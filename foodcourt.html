@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Tracker - Pick Foodcourt</title>
+    <meta name="viewport" content="width=810, height=1080, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="tablet-frame">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="static/images/logo.png" class="logo">
+            <span class="app-name">SP FoodPulse Kiosk</span>
+        </div>
+
+        <div class="language-select">
+            <span id="langLabel">Language</span>
+            <select id="languageDropdown">
+                <option value="en" selected>English</option>
+                <option value="zh">Mandarin</option>
+                <option value="ta">Tamil</option>
+                <option value="ms">Malay</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <div class="title-bar">
+            <a href="./index.html" class="back-arrow">&#8592;</a>
+            <h2 class="center-title" id="pickFoodcourt">Pick Your Foodcourt</h2>
+        </div>
+
+        <div class="foodcourt-grid">
+            <div class="foodcourt-card" data-fc="Food Court 1">
+                <img src="static/images/foodcourt1.jpg">
+                <div class="foodcourt-overlay">Food Court 1</div>
+            </div>
+
+            <div class="foodcourt-card" data-fc="Food Court 2">
+                <img src="static/images/foodcourt2.jpg">
+                <div class="foodcourt-overlay">Food Court 2</div>
+            </div>
+
+            <div class="foodcourt-card" data-fc="Food Court 3">
+                <img src="static/images/foodcourt3.jpg">
+                <div class="foodcourt-overlay">Food Court 3</div>
+            </div>
+
+            <div class="foodcourt-card" data-fc="Food Court 4">
+                <img src="static/images/foodcourt4.jpg">
+                <div class="foodcourt-overlay">Food Court 4</div>
+            </div>
+
+            <div class="foodcourt-card" data-fc="Food Court 5">
+                <img src="static/images/foodcourt5.jpg">
+                <div class="foodcourt-overlay">Food Court 5</div>
+            </div>
+
+            <div class="foodcourt-card" data-fc="Food Court 6">
+                <img src="static/images/foodcourt6.jpg">
+                <div class="foodcourt-overlay">Food Court 6</div>
+            </div>
+        </div>
+
+        <!-- FOODCOURT INFO PANEL -->
+        <div id="fc-info-panel" class="fc-info-panel">
+            <div class="fc-info-header">
+                <h3 id="fc-title">Food Court 1</h3>
+            </div>
+            
+            <div class="fc-section">
+                <h4 id="salesAvailable">Sales Available</h4>
+                <ul class="stall-list">
+                    <li><span>Chicken Rice</span> <span class="percent-text">80%</span><small>A student staple</small><div class="bar" data-percent="80"></div></li>
+                    <li><span>Japanese Curry / Rice Bowls</span> <span class="percent-text">90%</span><small>Very popular</small><div class="bar" data-percent="90"></div></li>
+                    <li><span>Western Cuisine</span> <span class="percent-text">75%</span><small>Pastas, chicken chops</small><div class="bar" data-percent="75"></div></li>
+                    <li><span>Ban Mian / Fish Soup</span> <span class="percent-text">70%</span><div class="bar" data-percent="70"></div></li>
+                    <li><span>Mala Hotpot</span> <span class="percent-text">65%</span><div class="bar" data-percent="65"></div></li>
+                    <li><span>Thai Cuisine</span> <span class="percent-text">60%</span><small>Basil chicken, noodles</small><div class="bar" data-percent="60"></div></li>
+                    <li><span>Yong Tau Foo</span> <span class="percent-text">55%</span><div class="bar" data-percent="55"></div></li>
+                    <li><span>Desserts</span> <span class="percent-text">85%</span><small>Ice Kacang etc.</small><div class="bar" data-percent="85"></div></li>
+                    <li><span>Drinks & Toast Stall</span> <span class="percent-text">95%</span><small>Main anchor</small><div class="bar" data-percent="95"></div></li>
+                </ul>
+            </div>
+            
+            <div class="fc-section">
+                <h4 id="timePeriod">Time Period</h4>
+                <div class="time-buttons">
+                    <button data-time="8am-10am" id="time1">8am-10am</button>
+                    <button data-time="10am-12pm" class="active" id="time2">10am-12pm</button>
+                    <button data-time="12pm-3pm" id="time3">12pm-3pm</button>
+                    <button data-time="3pm-5pm" id="time4">3pm-5pm</button>
+                    <button data-time="5pm-7pm" id="time5">5pm-7pm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script src="static/script.js"></script>
+</body>
+</html>

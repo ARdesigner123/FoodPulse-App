@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SP FoodPulse Kiosk</title>
+    <meta name="viewport" content="width=810, height=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="phone-frame">
+    <div class="app-shell">
+        <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="static/images/VendorProfile.png"
+                 class="nav-icon profile-icon"
+                 id="profileBtn"
+                 alt="Vendor Profile">
+            <img src="static/images/logo.png" class="logo">
+            <span class="app-name">SP FoodPulse Kiosk</span>
+        </div>
+
+        <div class="language-select">
+            <span id="langLabel">Language</span>
+            <select id="languageDropdown">
+                <option value="en" selected>English</option>
+                <option value="zh">Mandarin</option>
+                <option value="ta">Tamil</option>
+                <option value="ms">Malay</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- ================= VENDOR MODAL ================= -->
+    <div class="modal-overlay" id="vendorModal" style="display:none;">
+        <div class="modal-card" id="authCard">
+
+            <!-- AUTH SECTION -->
+            <div id="authSection">
+                <h3 id="modalTitle">FoodPulse Membership</h3>
+                <p class="modal-subtitle" id="modalSubtitle">For Food Court Vendors</p>
+
+                <div class="input-group">
+                    <label for="vendorName">Enter Vendor Name</label>
+                    <input type="text" id="vendorName" placeholder="e.g. ChickenRice1">
+                    <small class="hint">
+                        Starts with a letter, includes uppercase, lowercase & number (5-30 chars)
+                    </small>
+                </div>
+
+                <p id="errorText" class="error-text" style="display:none;"></p>
+
+                <select id="vendorFoodCourt">
+                    <option value="">Select Food Court</option>
+                    <option>Food Court 1</option>
+                    <option>Food Court 2</option>
+                    <option>Food Court 3</option>
+                    <option>Food Court 4</option>
+                    <option>Food Court 5</option>
+                    <option>Food Court 6</option>
+                </select>
+
+                <select id="vendorStall" disabled>
+                    <option value="">Select Food Stall</option>
+                </select>
+
+                <button class="primary-btn" id="actionBtn">Register</button>
+
+                <p class="modal-link">
+                    <span id="toggleAuth">Already a member? Sign In</span>
+                </p>
+            </div>
+
+            <!-- ================= PROFILE SECTION ================= -->
+            <div id="profileSection" style="display:none;">
+
+                <!-- PROFILE TABS -->
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="profileTab">Profile</button>
+                    <button class="tab-btn" data-tab="rankTab">Rank</button>
+                    <button class="tab-btn" data-tab="questTab">Quests</button>
+                </div>
+
+                <!-- PROFILE TAB -->
+                <div id="profileTab" class="tab-content active">
+                    <h3>Your Vendor Profile</h3>
+
+                    <p><strong>Vendor Name:</strong><br><span id="profileName"></span></p>
+
+                    <p><strong>Food Court:</strong><br><span id="profileFoodCourt"></span></p>
+                    <p><strong>Food Stall:</strong><br><span id="profileStall"></span></p>
+
+                    <div class="profile-stats">
+
+                        <!-- FoodPulse Currency -->
+                        <div class="stat-row">
+                            <span class="stat-label">FoodPulse Currency</span>
+                            <div class="stat-value">
+                                <span id="coinAmount">0</span>
+                                <img src="static/images/FoodPulseCoin.png" class="coin-icon">
+                            </div>
+                        </div>
+
+                        <!-- Reduce Food Waste -->
+                        <div class="stat-row">
+                            <span class="stat-label">Reduce Food Waste</span>
+                            <div class="stat-value green">
+                                <span id="wasteCount">0</span>
+                                <span class="stat-sub">Dishes</span>
+                            </div>
+                        </div>
+
+                        <!-- Daily Streak -->
+                        <div class="stat-row">
+                            <span class="stat-label">Daily Streak</span>
+                            <div class="stat-value orange">
+                                <span id="streakCount">0</span>
+                                <span class="fire">🔥</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VENDOR EDIT -->
+                    <div id="vendorEditSection">
+                        <h3>Update Food Availability</h3>
+
+                        <label>Time Period</label>
+                        <select id="editTime">
+                            <option>8am-10am</option>
+                            <option>10am-12pm</option>
+                            <option>12pm-3pm</option>
+                            <option>3pm-5pm</option>
+                            <option>5pm-7pm</option>
+                        </select>
+
+                        <label>Availability (%)</label>
+                        <input type="number" id="editPercent" min="0" max="100">
+                        <button class="primary-btn" id="saveAvailability">Save</button>
+
+                        <h3>Closing Hour Discount</h3>
+
+                        <input type="text" id="foodName" placeholder="Food Name">
+                        <input type="number" id="originalPrice" placeholder="Original Price">
+                        <input type="number" id="discountedPrice" placeholder="Discounted Price">
+                        <input type="number" id="quantity" placeholder="Quantity">
+
+                        <select id="closingTime">
+                            <option>5pm-7pm</option>
+                        </select>
+
+                        <button class="primary-btn" id="saveClosingDiscount">Save Discount</button>
+                        <p id="saveMsg"></p>
+                    </div>
+
+                    <button class="primary-btn" id="logoutBtn" style="margin-top:16px;">
+                        Log Out
+                    </button>
+                </div>
+
+                <!-- RANK TAB -->
+                <div id="rankTab" class="tab-content">
+                    <h3>Your Current Rank</h3>
+                    <p class="rank-name">Starter</p>
+
+                    <div class="xp-bar">
+                        <div class="xp-progress" style="width:0%;"></div>
+                    </div>
+                    
+                    <p class="xp-text">0 / 100 XP to Bronze</p>
+
+                    <ul class="reward-list">
+                        <li>Bronze - 100 XP → 💰 10</li>
+                        <li>Silver - 400 XP → 💰 40</li>
+                        <li>Gold - 800 XP → 💰 80</li>
+                        <li>Diamond - 1400 XP → 💰 140</li>
+                        <li>Emerald - 2000 XP → 💰 200</li>
+                    </ul>
+                </div>
+
+                <!-- QUEST TAB -->
+                <div id="questTab" class="tab-content">
+                    <h3>Quests</h3>
+                    <div class="quest-buttons">
+                        <button class="secondary-btn">Daily</button>
+                        <button class="secondary-btn">Weekly</button>
+                        <button class="secondary-btn">Monthly</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="container">
+        <h2 id="menuTitle">Menu Categories</h2>
+
+        <div class="menu-grid">
+            <div class="menu-card chinese" id="chinese"><div class="menu-overlay"><span>Chinese</span></div></div>
+            <div class="menu-card malay" id="malay"><div class="menu-overlay"><span>Malay</span></div></div>
+            <div class="menu-card western" id="western"><div class="menu-overlay"><span>Western</span></div></div>
+            <div class="menu-card korean" id="korean"><div class="menu-overlay"><span>Korean</span></div></div>
+            <div class="menu-card japanese" id="japanese"><div class="menu-overlay"><span>Japanese</span></div></div>
+            <div class="menu-card desserts" id="desserts"><div class="menu-overlay"><span>Desserts</span></div></div>
+            <div class="menu-card drinks" id="drinks"><div class="menu-overlay"><span>Drinks</span></div></div>
+            <div class="menu-card fruits" id="fruits"><div class="menu-overlay"><span>Fruits & Vegetables</span></div></div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="primary-btn" id="scheduleBtn">Student Schedule</button>
+            <button class="secondary-btn" id="trackerBtn">Food Tracker</button>
+            <button class="secondary-btn" id="closingHourBtn">Closing-Hour Discount</button>
+            <button class="secondary-btn" id="dailyQuizBtn" style="display:none; margin-top:12px;">📘 Daily Quiz</button>
+        </div>
+    </div>
+
+    <!-- ================= DAILY QUIZ MODAL ================= -->
+    <div class="modal-overlay" id="quizModal" style="display:none;">
+        <div class="modal-card quiz-card">
+
+            <h3 style="display:flex; align-items:center; gap:10px;">
+                <button id="exitQuizBtn" style="display:none;" class="icon-btn">⬅</button>
+                Daily Quiz
+            </h3>
+
+            <div class="quiz-meta">
+                <span id="quizProgress">Question 1 of 3</span>
+                <span id="quizLives">🍎🍎🍎</span>
+            </div>
+
+            <h4 id="quizQuestionTitle">Question</h4>
+            <p id="quizQuestionText"></p>
+
+            <div class="quiz-options">
+                <button class="quiz-option" data-index="0"></button>
+                <button class="quiz-option" data-index="1"></button>
+                <button class="quiz-option" data-index="2"></button>
+                <button class="quiz-option" data-index="3"></button>
+            </div>
+
+            <p class="quiz-info" id="quizInfo" style="display:none;"></p>
+
+            <button class="primary-btn" id="nextQuestionBtn" style="display:none;">
+                Next Question
+            </button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<script src="static/profile.js"></script>
+<script src="static/script.js"></script>
+</body>
+</html>

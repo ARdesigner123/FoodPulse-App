@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Japanese Food Menu - SP FoodPulse Kiosk</title>
+    <meta name="viewport" content="width=810, height=1080, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="tablet-frame">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="static/images/logo.png" class="logo">
+            <span class="app-name">SP FoodPulse Kiosk</span>
+        </div>
+
+        <div class="language-select">
+            <span id="langLabel">Language</span>
+            <select id="languageDropdown">
+                <option value="en" selected>English</option>
+                <option value="zh">Mandarin</option>
+                <option value="ta">Tamil</option>
+                <option value="ms">Malay</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="title-row">
+            <button class="back-btn" onclick="window.location.href='index.html'">&#8592;</button>
+            <h2 id="japaneseMenuTitle">Japanese Food Menu</h2>
+        </div>
+
+        <!-- FOOD COURTS -->
+        <div class="foodcourt-buttons">
+            <button class="fc-btn" data-fc="Food Court 1">Food Court 1</button>
+            <button class="fc-btn" data-fc="Food Court 2">Food Court 2</button>
+            <button class="fc-btn" data-fc="Food Court 3">Food Court 3</button>
+            <button class="fc-btn" data-fc="Food Court 4">Food Court 4</button>
+            <button class="fc-btn" data-fc="Food Court 5">Food Court 5</button>
+        </div>
+
+        <!-- MAP -->
+        <div class="map-section">
+            <h3 id="gpsTitle">GPS Map of Singapore Polytechnic</h3>
+            <iframe
+                id="spMap"
+                width="100%"
+                height="350"
+                style="border:0; border-radius:12px;"
+                loading="lazy"
+                src="https://www.google.com/maps?q=Singapore+Polytechnic&output=embed">
+            </iframe>
+            <p id="gpsHint">Tap a Food Court button to view its location</p>
+        </div>
+
+        <!-- STALL BUTTONS -->
+        <div class="stall-buttons">
+
+            <button class="stall-btn" data-fc="Food Court 1" data-stall="fc1-japanese-curry">
+                Japanese Curry (FC1)
+            </button>
+
+            <button class="stall-btn" data-fc="Food Court 2" data-stall="fc2-japanese-don">
+                Japanese Cuisine (FC2)
+            </button>
+
+            <button class="stall-btn" data-fc="Food Court 3" data-stall="fc3-bagus-jap">
+                Bagus Japanese & Korean (FC3)
+            </button>
+
+            <button class="stall-btn" data-fc="Food Court 4" data-stall="fc4-tamagood">
+                Tamagood (FC4)
+            </button>
+
+            <button class="stall-btn" data-fc="Food Court 4" data-stall="fc4-koufu-jap">
+                Koufu Japanese (FC4)
+            </button>
+
+            <button class="stall-btn" data-fc="Food Court 5" data-stall="fc5-food-connection">
+                Food Connection Jap (FC5)
+            </button>
+
+        </div>
+
+        <!-- FOOD CARDS -->
+        <div id="food-cards" class="food-cards" style="display:none;"></div>
+
+    </div>
+</div>
+
+<script src="static/script.js"></script>
+<script src="static/japanese.js"></script>
+</body>
+</html>

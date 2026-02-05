@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drinks - SP FoodPulse Kiosk</title>
+    <meta name="viewport" content="width=810, height=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+<div class="tablet-frame">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="static/images/logo.png" class="logo">
+        <span class="app-name">SP FoodPulse Kiosk</span>
+    </div>
+
+    <div class="language-select">
+        <span id="langLabel">Language</span>
+        <select id="languageDropdown">
+            <option value="en" selected>English</option>
+            <option value="zh">Mandarin</option>
+            <option value="ta">Tamil</option>
+            <option value="ms">Malay</option>
+        </select>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <!-- TITLE -->
+    <div class="title-row">
+        <button class="back-btn" onclick="window.location.href='index.html'">&#8592;</button>
+        <h2 id="drinkTitle">Drinks in SP</h2>
+    </div>
+
+    <!-- FOOD COURTS -->
+    <div class="foodcourt-buttons">
+        <button class="fc-btn" data-fc="Food Court 1">Food Court 1</button>
+        <button class="fc-btn" data-fc="Food Court 2">Food Court 2</button>
+        <button class="fc-btn" data-fc="Food Court 3">Food Court 3</button>
+        <button class="fc-btn" data-fc="Food Court 4">Food Court 4</button>
+        <button class="fc-btn" data-fc="Food Court 5">Food Court 5</button>
+        <button class="fc-btn" data-fc="Food Court 6">Food Court 6</button>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-section">
+        <h3 id="gpsTitle">GPS Map of Singapore Polytechnic</h3>
+        <iframe
+            id="spMap"
+            width="100%"
+            height="350"
+            style="border:0; border-radius:12px;"
+            loading="lazy"
+            src="https://www.google.com/maps?q=Singapore+Polytechnic&output=embed">
+        </iframe>
+        <p id="gpsHint">Tap a Food Court button to view its location</p>
+    </div>
+
+    <!-- STALL BUTTONS -->
+    <div class="stall-buttons">
+
+        <button class="stall-btn" data-fc="Food Court 1" data-stall="fc1-drinks">
+            FC1 Drinks
+        </button>
+
+        <button class="stall-btn" data-fc="Food Court 2" data-stall="fc2-drinks">
+            FC2 Drinks
+        </button>
+
+        <button class="stall-btn" data-fc="Food Court 3" data-stall="fc3-drinks">
+            Drink Store (FC3)
+        </button>
+
+        <button class="stall-btn" data-fc="Food Court 4" data-stall="fc4-drinks">
+            Koufu Drinks (FC4)
+        </button>
+
+        <button class="stall-btn" data-fc="Food Court 4" data-stall="fc4-fruit">
+            Fruit Stall (FC4)
+        </button>
+
+        <button class="stall-btn" data-fc="Food Court 5" data-stall="fc5-drinks">
+            Cafes & Fast Food Drinks (FC5)
+        </button>
+
+        <button class="stall-btn" data-fc="Food Court 6" data-stall="fc6-drinks">
+            Thai Stall Drinks (FC6)
+        </button>
+
+    </div>
+
+    <!-- FOOD CARDS -->
+    <div id="food-cards" class="food-cards" style="display:none;"></div>
+
+</div>
+</div>
+
+<script src="static/script.js"></script>
+<script src="static/drinks.js"></script>
+</body>
+</html>
