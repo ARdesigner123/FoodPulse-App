@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leftovers Available</title>
+    <meta name="viewport" content="width=390, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="phone-frame">
+    <div class="app-shell">
+
+        <!-- HEADER -->
+        <div class="food-header">
+            <a href="index.html" class="back-btn">&#8592;</a>
+            <h2>Leftovers Available</h2>
+        </div>
+
+        <!-- IMAGE -->
+        <img src="static/images/kebab.jpg" class="food-image">
+
+        <div class="container order-page">
+
+            <!-- MAIN FOOD -->
+            <div class="order-card">
+                <h3>Kebab Rolls</h3>
+                <div class="addon-row">
+                    <span>Chicken Kebab Roll Price</span>
+                    <input type="number" placeholder="$ Price" class="price-input" id="vendorChickenKebabPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorChickenKebabQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Beef Kebab Roll Price</span>
+                    <input type="number" placeholder="$ Price" class="price-input" id="vendorBeefKebabPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorBeefKebabQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Mixed Kebab Roll Price</span>
+                    <input type="number" placeholder="$ Price" class="price-input" id="vendorMixedKebabPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorMixedKebabQuantity">
+                </div>
+            </div>
+
+            <!-- WRAP TYPE -->
+            <div class="order-card highlight-card">
+                <h3>Wrap Type</h3>
+                <div class="addon-row">
+                    <span>Regular Wrap Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorRegularWrapQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Wholemeal Wrap Price</span>
+                    <input type="number" placeholder="$ Price" class="price-input" id="vendorWholemealWrapPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorWholemealWrapQuantity">
+                </div>
+            </div>
+
+            <!-- CHOICE OF BASE -->
+            <div class="order-card">
+                <h3>Choice of Base</h3>
+                <div class="addon-row">
+                    <span>Standard Base Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorStandardBaseQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>No Base Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorNoBaseQuantity">
+                </div>
+            </div>
+
+            <!-- ADD ONS -->
+            <div class="order-card highlight-card">
+                <h3>Add-ons</h3>
+                <div class="addon-row">
+                    <span>Add Cheese Price</span>
+                    <input type="number" placeholder="$ Price" class="small-input" id="vendorCheesePrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorCheeseQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Add Egg Price</span>
+                    <input type="number" placeholder="$ Price" class="small-input" id="vendorEggPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorEggQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Extra Meat Price</span>
+                    <input type="number" placeholder="$ Price" class="small-input" id="vendorExtraMeatPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorExtraMeatQuantity">
+                </div>
+            </div>
+
+            <!-- CHOICE OF SAUCES -->
+            <div class="order-card">
+                <h3>Choice of Sauces</h3>
+                <div class="addon-row">
+                    <span>Mayo Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorMayoQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Chili Sauce Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorChiliSauceQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Garlic Sauce Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorGarlicSauceQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>BBQ Sauce Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorBbqSauceQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Tomato Sauce Quantity</span>
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorTomatoSauceQuantity">
+                </div>
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <p id="errorText" class="error-text" style="display:none; color: red; text-align: center;"></p>
+
+            <!-- LOG BUTTON -->
+            <button class="primary-btn confirm-btn" id="logLeftoversBtn">
+                Log Leftovers
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="static/kebab.js"></script>
+</body>
+</html>

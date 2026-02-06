@@ -1,0 +1,194 @@
+const API_BASE = "https://foodpulse-backend.onrender.com/api";
+
+// Elements for kebab.html (Student View)
+const chickenKebabPrice = document.getElementById("chickenKebabPrice");
+const beefKebabPrice = document.getElementById("beefKebabPrice");
+const mixedKebabPrice = document.getElementById("mixedKebabPrice");
+const wholemealWrapPrice = document.getElementById("wholemealWrapPrice");
+const cheesePrice = document.getElementById("cheesePrice");
+const eggPrice = document.getElementById("eggPrice");
+const extraMeatPrice = document.getElementById("extraMeatPrice");
+const chickenKebabQuantity = document.getElementById("chickenKebabQuantity");
+const beefKebabQuantity = document.getElementById("beefKebabQuantity");
+const mixedKebabQuantity = document.getElementById("mixedKebabQuantity");
+const regularWrapQuantity = document.getElementById("regularWrapQuantity");
+const wholemealWrapQuantity = document.getElementById("wholemealWrapQuantity");
+const cheeseQuantity = document.getElementById("cheeseQuantity");
+const eggQuantity = document.getElementById("eggQuantity");
+const extraMeatQuantity = document.getElementById("extraMeatQuantity");
+const standardBaseQuantity = document.getElementById("standardBaseQuantity");
+const noBaseQuantity = document.getElementById("noBaseQuantity");
+const mayoQuantity = document.getElementById("mayoQuantity");
+const chiliSauceQuantity = document.getElementById("chiliSauceQuantity");
+const garlicSauceQuantity = document.getElementById("garlicSauceQuantity");
+const bbqSauceQuantity = document.getElementById("bbqSauceQuantity");
+const tomatoSauceQuantity = document.getElementById("tomatoSauceQuantity");
+
+// Elements for kebabVendor.html (Vendor View)
+const vendorChickenKebabPrice = document.getElementById("vendorChickenKebabPrice");
+const vendorBeefKebabPrice = document.getElementById("vendorBeefKebabPrice");
+const vendorMixedKebabPrice = document.getElementById("vendorMixedKebabPrice");
+const vendorWholemealWrapPrice = document.getElementById("vendorWholemealWrapPrice");
+const vendorCheesePrice = document.getElementById("vendorCheesePrice");
+const vendorEggPrice = document.getElementById("vendorEggPrice");
+const vendorExtraMeatPrice = document.getElementById("vendorExtraMeatPrice");
+const vendorChickenKebabQuantity = document.getElementById("vendorChickenKebabQuantity");
+const vendorBeefKebabQuantity = document.getElementById("vendorBeefKebabQuantity");
+const vendorMixedKebabQuantity = document.getElementById("vendorMixedKebabQuantity");
+const vendorRegularWrapQuantity = document.getElementById("vendorRegularWrapQuantity");
+const vendorWholemealWrapQuantity = document.getElementById("vendorWholemealWrapQuantity");
+const vendorCheeseQuantity = document.getElementById("vendorCheeseQuantity");
+const vendorEggQuantity = document.getElementById("vendorEggQuantity");
+const vendorExtraMeatQuantity = document.getElementById("vendorExtraMeatQuantity");
+const vendorStandardBaseQuantity = document.getElementById("vendorStandardBaseQuantity");
+const vendorNoBaseQuantity = document.getElementById("vendorNoBaseQuantity");
+const vendorMayoQuantity = document.getElementById("vendorMayoQuantity");
+const vendorChiliSauceQuantity = document.getElementById("vendorChiliSauceQuantity");
+const vendorGarlicSauceQuantity = document.getElementById("vendorGarlicSauceQuantity");
+const vendorBbqSauceQuantity = document.getElementById("vendorBbqSauceQuantity");
+const vendorTomatoSauceQuantity = document.getElementById("vendorTomatoSauceQuantity");
+const logLeftoversBtn = document.getElementById("logLeftoversBtn");
+const errorText = document.getElementById("errorText");
+
+// Load data for students (kebab.html)
+function loadKebabData() {
+    fetch(`${API_BASE}/kebab`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.length > 0) {
+                const item = data[0]; // Assuming one vendor for simplicity
+                if (chickenKebabPrice) chickenKebabPrice.textContent = `$${item.chicken_kebab_price}`;
+                if (beefKebabPrice) beefKebabPrice.textContent = `$${item.beef_kebab_price}`;
+                if (mixedKebabPrice) mixedKebabPrice.textContent = `$${item.mixed_kebab_price}`;
+                if (wholemealWrapPrice) wholemealWrapPrice.textContent = `$${item.wholemeal_wrap_price}`;
+                if (cheesePrice) cheesePrice.textContent = `$${item.cheese_price}`;
+                if (eggPrice) eggPrice.textContent = `$${item.egg_price}`;
+                if (extraMeatPrice) extraMeatPrice.textContent = `$${item.extra_meat_price}`;
+                if (chickenKebabQuantity) chickenKebabQuantity.textContent = item.chicken_kebab_quantity;
+                if (beefKebabQuantity) beefKebabQuantity.textContent = item.beef_kebab_quantity;
+                if (mixedKebabQuantity) mixedKebabQuantity.textContent = item.mixed_kebab_quantity;
+                if (regularWrapQuantity) regularWrapQuantity.textContent = item.regular_wrap_quantity;
+                if (wholemealWrapQuantity) wholemealWrapQuantity.textContent = item.wholemeal_wrap_quantity;
+                if (cheeseQuantity) cheeseQuantity.textContent = item.cheese_quantity;
+                if (eggQuantity) eggQuantity.textContent = item.egg_quantity;
+                if (extraMeatQuantity) extraMeatQuantity.textContent = item.extra_meat_quantity;
+                if (standardBaseQuantity) standardBaseQuantity.textContent = item.standard_base_quantity;
+                if (noBaseQuantity) noBaseQuantity.textContent = item.no_base_quantity;
+                if (mayoQuantity) mayoQuantity.textContent = item.mayo_quantity;
+                if (chiliSauceQuantity) chiliSauceQuantity.textContent = item.chili_sauce_quantity;
+                if (garlicSauceQuantity) garlicSauceQuantity.textContent = item.garlic_sauce_quantity;
+                if (bbqSauceQuantity) bbqSauceQuantity.textContent = item.bbq_sauce_quantity;
+                if (tomatoSauceQuantity) tomatoSauceQuantity.textContent = item.tomato_sauce_quantity;
+            }
+        })
+        .catch(() => console.log("Error loading kebab data"));
+}
+
+// Function to show error message
+function showError(message) {
+    if (errorText) {
+        errorText.textContent = message;
+        errorText.style.display = "block";
+    }
+}
+
+// Function to hide error message
+function hideError() {
+    if (errorText) {
+        errorText.style.display = "none";
+    }
+}
+
+// Save data for vendors (kebabVendor.html)
+if (logLeftoversBtn) {
+    logLeftoversBtn.addEventListener("click", () => {
+        hideError();
+
+        const token = localStorage.getItem("token");
+        if (!token) {
+            showError("Please login first.");
+            return;
+        }
+
+        // Validation
+        const inputs = [
+            { value: vendorChickenKebabPrice.value, name: "Chicken Kebab Price" },
+            { value: vendorBeefKebabPrice.value, name: "Beef Kebab Price" },
+            { value: vendorMixedKebabPrice.value, name: "Mixed Kebab Price" },
+            { value: vendorWholemealWrapPrice.value, name: "Wholemeal Wrap Price" },
+            { value: vendorCheesePrice.value, name: "Cheese Price" },
+            { value: vendorEggPrice.value, name: "Egg Price" },
+            { value: vendorExtraMeatPrice.value, name: "Extra Meat Price" },
+            { value: vendorChickenKebabQuantity.value, name: "Chicken Kebab Quantity" },
+            { value: vendorBeefKebabQuantity.value, name: "Beef Kebab Quantity" },
+            { value: vendorMixedKebabQuantity.value, name: "Mixed Kebab Quantity" },
+            { value: vendorRegularWrapQuantity.value, name: "Regular Wrap Quantity" },
+            { value: vendorWholemealWrapQuantity.value, name: "Wholemeal Wrap Quantity" },
+            { value: vendorCheeseQuantity.value, name: "Cheese Quantity" },
+            { value: vendorEggQuantity.value, name: "Egg Quantity" },
+            { value: vendorExtraMeatQuantity.value, name: "Extra Meat Quantity" },
+            { value: vendorStandardBaseQuantity.value, name: "Standard Base Quantity" },
+            { value: vendorNoBaseQuantity.value, name: "No Base Quantity" },
+            { value: vendorMayoQuantity.value, name: "Mayo Quantity" },
+            { value: vendorChiliSauceQuantity.value, name: "Chili Sauce Quantity" },
+            { value: vendorGarlicSauceQuantity.value, name: "Garlic Sauce Quantity" },
+            { value: vendorBbqSauceQuantity.value, name: "BBQ Sauce Quantity" },
+            { value: vendorTomatoSauceQuantity.value, name: "Tomato Sauce Quantity" }
+        ];
+
+        for (const input of inputs) {
+            if (input.value === "" || isNaN(input.value) || parseFloat(input.value) < 0) {
+                showError(`${input.name} must be a valid non-negative number and cannot be blank.`);
+                return;
+            }
+        }
+
+        const payload = {
+            chickenKebabPrice: parseFloat(vendorChickenKebabPrice.value),
+            beefKebabPrice: parseFloat(vendorBeefKebabPrice.value),
+            mixedKebabPrice: parseFloat(vendorMixedKebabPrice.value),
+            wholemealWrapPrice: parseFloat(vendorWholemealWrapPrice.value),
+            cheesePrice: parseFloat(vendorCheesePrice.value),
+            eggPrice: parseFloat(vendorEggPrice.value),
+            extraMeatPrice: parseFloat(vendorExtraMeatPrice.value),
+            chickenKebabQuantity: parseInt(vendorChickenKebabQuantity.value),
+            beefKebabQuantity: parseInt(vendorBeefKebabQuantity.value),
+            mixedKebabQuantity: parseInt(vendorMixedKebabQuantity.value),
+            regularWrapQuantity: parseInt(vendorRegularWrapQuantity.value),
+            wholemealWrapQuantity: parseInt(vendorWholemealWrapQuantity.value),
+            cheeseQuantity: parseInt(vendorCheeseQuantity.value),
+            eggQuantity: parseInt(vendorEggQuantity.value),
+            extraMeatQuantity: parseInt(vendorExtraMeatQuantity.value),
+            standardBaseQuantity: parseInt(vendorStandardBaseQuantity.value),
+            noBaseQuantity: parseInt(vendorNoBaseQuantity.value),
+            mayoQuantity: parseInt(vendorMayoQuantity.value),
+            chiliSauceQuantity: parseInt(vendorChiliSauceQuantity.value),
+            garlicSauceQuantity: parseInt(vendorGarlicSauceQuantity.value),
+            bbqSauceQuantity: parseInt(vendorBbqSauceQuantity.value),
+            tomatoSauceQuantity: parseInt(vendorTomatoSauceQuantity.value)
+        };
+
+        fetch(`${API_BASE}/kebab`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = "index.html";
+            } else {
+                showError("Error: " + data.error);
+            }
+        })
+        .catch(() => showError("Server error. Please try again."));
+    });
+}
+
+// Load data on page load
+document.addEventListener("DOMContentLoaded", () => {
+    loadKebabData();
+});

@@ -35,6 +35,7 @@ const translations = {
             fc2: "Food Court 2",
             fc3: "Food Court 3",
             fc4: "Food Court 4",
+            fc5: "Food Court 5",
             fc6: "Food Court 6"
         },
         foodCourtNames: {
@@ -372,19 +373,19 @@ const fcData = {
     }
 },
 "Food Court 3": {
-    stalls: ["Indonesian Express","SP Mini Wok","Waffle Street","Mr Pasta","Crumbz Up","Mala Xiang Guo","Chinese Cuisine","The Crowded Bowl","Nasi Lemak / Chicken Rice","Drinks & Toast Stall"],
+    stalls: ["Indonesian Express","SP Mini Wok","Waffle Street","Mr Pasta","Crumbz Up","Mala Xiang Guo","Chinese Cuisine","The Crowded Bowl","Nasi Lemak / Chicken Rice","Drinks & Toast Stall", "Turkish & Mediterranean Kebab"],
     descriptions: {
-        en: ["Famous for Ayam Penyet and spicy chili","Salted Egg Chicken Rice, Mala Chicken Rice","Large, crispy waffles with various toppings/ice cream","Customizable cream and tomato-based pastas","Acai bowls and healthy granola treats","A student favorite with manageable queues","Known for Jiao Zi / pan-fried dumplings","Vegetarian salad bowls","Halal-certified options available","Known for large Ice Milo and breakfast sets"],
-        zh: ["以阿央佩妮特和辣椒闻名","咸蛋鸡饭，麻辣鸡饭","大而脆的华夫饼配各种配料/冰淇淋","可定制的奶油和番茄酱意大利面","阿萨伊碗和健康格兰诺拉零食","学生最爱，队伍可管理","以饺子/煎饺闻名","素食沙拉碗","提供清真认证选项","以大冰米洛和早餐套餐闻名"],
-        ta: ["அயம் பென்யட் மற்றும் மசாலா சிலிக்கு பிரபலமான","உப்பு முட்டை கோழி சாதம், மாலா கோழி சாதம்","பல்வேறு டாப்பிங்ஸ்/ஐஸ் க்ரீமுடன் பெரிய, க்ரிஸ்பி வாஃபிள்ஸ்","தனிப்பயன் க்ரீம் மற்றும் டோமேட்டோ அடிப்படையிலான பாஸ்தாக்கள்","அசாய் பவுல்ஸ் மற்றும் ஆரோக்கியமான கிரானோலா ட்ரீட்ஸ்","மாணவர்களின் பிடித்த, நிர்வகிக்கக்கூடிய வரிசைகள்","ஜியோ சி / பான்-ஃப்ரைட் டம்ப்லிங்ஸுக்கு அறியப்பட்ட","சைவ சாலட் பவுல்ஸ்","ஹலால் சான்றிதழ் விருப்பங்கள் கிடைக்கின்றன","பெரிய ஐஸ் மிலோ மற்றும் பிரேக்ஃபாஸ்ட் செட்களுக்கு அறியப்பட்ட"],
-        ms: ["Terkenal dengan Ayam Penyet dan cili pedas","Nasi Ayam Telur Masin, Nasi Ayam Mala","Wafel besar, rangup dengan pelbagai topping/ais krim","Pasta krim dan tomato yang boleh disesuaikan","Mangkuk Acai dan rawatan granola sihat","Kegemaran pelajar dengan barisan boleh diurus","Dikenali untuk Jiao Zi / dumpling goreng","Mangkuk salad vegetarian","Pilihan halal tersedia","Dikenali untuk Ice Milo besar dan set sarapan"]
+        en: ["Famous for Ayam Penyet and spicy chili","Salted Egg Chicken Rice, Mala Chicken Rice","Large, crispy waffles with various toppings/ice cream","Customizable cream and tomato-based pastas","Acai bowls and healthy granola treats","A student favorite with manageable queues","Known for Jiao Zi / pan-fried dumplings","Vegetarian salad bowls","Halal-certified options available","Known for large Ice Milo and breakfast sets", "Authentic kebabs, wraps, and Mediterranean rice sets"],
+        zh: ["以阿央佩妮特和辣椒闻名","咸蛋鸡饭，麻辣鸡饭","大而脆的华夫饼配各种配料/冰淇淋","可定制的奶油和番茄酱意大利面","阿萨伊碗和健康格兰诺拉零食","学生最爱，队伍可管理","以饺子/煎饺闻名","素食沙拉碗","提供清真认证选项","以大冰米洛和早餐套餐闻名", "正宗土耳其烤肉、卷饼和地中海饭食"],
+        ta: ["அயம் பென்யட் மற்றும் மசாலா சிலிக்கு பிரபலமான","உப்பு முட்டை கோழி சாதம், மாலா கோழி சாதம்","பல்வேறு டாப்பிங்ஸ்/ஐஸ் க்ரீமுடன் பெரிய, க்ரிஸ்பி வாஃபிள்ஸ்","தனிப்பயன் க்ரீம் மற்றும் டோமேட்டோ அடிப்படையிலான பாஸ்தாக்கள்","அசாய் பவுல்ஸ் மற்றும் ஆரோக்கியமான கிரானோலா ட்ரீட்ஸ்","மாணவர்களின் பிடித்த, நிர்வகிக்கக்கூடிய வரிசைகள்","ஜியோ சி / பான்-ஃப்ரைட் டம்ப்லிங்ஸுக்கு அறியப்பட்ட","சைவ சாலட் பவுல்ஸ்","ஹலால் சான்றிதழ் விருப்பங்கள் கிடைக்கின்றன","பெரிய ஐஸ் მிலோ மற்றும் பிரேக்ஃபாஸ்ட் செட்களுக்கு அறியப்பட்ட", "அசல் கபாப், ரேப் மற்றும் மெடிட்டரேனியன் சாத வகைகள்"],
+        ms: ["Terkenal dengan Ayam Penyet dan cili pedas","Nasi Ayam Telur Masin, Nasi Ayam Mala","Wafel besar, rangup dengan pelbagai topping/ais krim","Pasta krim dan tomato yang boleh disesuaikan","Mangkuk Acai dan rawatan granola sihat","Kegemaran pelajar dengan barisan boleh diurus","Dikenali untuk Jiao Zi / dumpling goreng","Mangkuk salad vegetarian","Pilihan halal tersedia","Dikenali untuk Ice Milo besar dan set sarapan", "Kebab asli, wrap, dan set nasi Mediterranean"]
     },
     times: {
-        "8am-10am": [60, 30, 60, 0, 0, 0, 20, 0, 50, 70],
-        "10am-12pm": [95, 90, 80, 85, 80, 70, 60, 50, 80, 95],
-        "12pm-3pm": [100, 100, 90, 85, 80, 75, 70, 60, 95, 100],
-        "3pm-5pm": [50, 40, 60, 30, 50, 40, 20, 30, 40, 50],
-        "5pm-7pm": [30, 25, 40, 20, 25, 30, 10, 20, 30, 35]
+        "8am-10am": [60, 30, 60, 0, 0, 0, 20, 0, 50, 70, 20], 
+        "10am-12pm": [95, 90, 80, 85, 80, 70, 60, 50, 80, 95, 90],
+        "12pm-3pm": [100, 100, 90, 85, 80, 75, 70, 60, 95, 100, 100],
+        "3pm-5pm": [50, 40, 60, 30, 50, 40, 20, 30, 40, 50, 60],
+        "5pm-7pm": [30, 25, 40, 20, 25, 30, 10, 20, 30, 35, 40]
     }
 },
 "Food Court 4": {
@@ -912,21 +913,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (closingHourBtn) {
         closingHourBtn.addEventListener("click", () => {
             window.location.href = "closinghour.html";
-        });
-    }
-
-    const chickenRiceCard = document.getElementById("chickenRice");
-    const kebabCard = document.getElementById("kebab");
-
-    if (chickenRiceCard) {
-        chickenRiceCard.addEventListener("click", () => {
-            window.location.href = "chickenRice.html";
-        });
-    }
-
-    if (kebabCard) {
-        kebabCard.addEventListener("click", () => {
-            window.location.href = "kebab.html";
         });
     }
 

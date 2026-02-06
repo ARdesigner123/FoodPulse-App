@@ -88,6 +88,7 @@ const foodCourtStalls = {
         "Chicken Rice / Nasi Lemak",
         "Mala Xiang Guo",
         "Indonesian Express",
+        "Turkish & Mediterranean Kebab Stall",
         "Thai Food",
         "Chinese Cuisine / Dumplings",
         "Western Food",
@@ -297,6 +298,7 @@ function loadVendorProfile() {
 
         // Store username for side menu updates
         localStorage.setItem("username", data.username);
+        localStorage.setItem("stall", data.stall);
         updateSideMenuLoggedIn(data.username);
     })
     .catch(() => {
@@ -305,6 +307,38 @@ function loadVendorProfile() {
         // localStorage.removeItem("token"); // Optional: Uncomment if you want to clear token on failure
         // localStorage.removeItem("username");
     });
+}
+
+function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("stall"); // Added to clear stall on logout
+
+    vendorModal.style.display = "none";
+
+    // Reset sections
+    authSection.style.display = "block";
+    profileSection.style.display = "none";
+
+    // Reset auth mode
+    showRegisterMode();
+
+    // Update side menu
+    updateSideMenuLoggedOut();
+
+    // Refresh the page after 0.3-0.6 seconds to ensure updates
+    setTimeout(() => {
+        window.location.reload();
+    }, Math.random() * 300 + 300); // Random delay between 300 and 600 ms
+}
+
+if (sideLogoutBtn) {
+    sideLogoutBtn.addEventListener("click", handleLogout);
+}
+
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", handleLogout);
+    // Refresh the page after 0.3-0.6 seconds to ensure updates
 }
 
 /* =========================
@@ -342,6 +376,19 @@ profileBtn.addEventListener("click", () => {
     }
     */
 });
+
+function openAuthModal(loginMode = false) {
+    // Reset modal view
+    vendorModal.style.display = "flex";
+    authSection.style.display = "block";
+    profileSection.style.display = "none";
+
+    // Reset animations just in case
+    profileSection.classList.remove("profile-slide-in", "profile-slide-out");
+
+    // Set correct mode
+    loginMode ? showLoginMode() : showRegisterMode();
+}
 
 // Close side menu when clicking overlay
 sideOverlay.addEventListener("click", () => {
@@ -415,6 +462,28 @@ if (vendorFoodCourt && vendorStall) {
     });
 }
 
+if (sideRegisterBtn) {
+    sideRegisterBtn.addEventListener("click", () => {
+        // Close side menu
+        sideMenu.style.display = "none";
+        sideOverlay.style.display = "none";
+
+        // Open modal in REGISTER mode
+        openAuthModal(false);
+    });
+}
+
+if (sideLoginBtn) {
+    sideLoginBtn.addEventListener("click", () => {
+        // Close side menu
+        sideMenu.style.display = "none";
+        sideOverlay.style.display = "none";
+
+        // Open modal in LOGIN mode
+        openAuthModal(true);
+    });
+}
+
 function isValidUsername(name) {
     return /^[A-Za-z](?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{4,29}$/.test(name);
 }
@@ -440,63 +509,64 @@ actionBtn.addEventListener("click", () => {
     }
 
     /* ========= REGISTER ========= */
-    if (!isLoginMode) {
-        if (!foodCourt || !stall) {
-            showError("Please select Food Court and Food Stall.");
+if (!isLoginMode) {
+    if (!foodCourt || !stall) {
+        showError("Please select Food Court and Food Stall.");
+        return;
+    }
+
+    fetch(`${API_BASE}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: name, foodCourt, stall })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            showError(data.error);
             return;
         }
-
-        fetch(`${API_BASE}/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username: name, foodCourt, stall })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.error) {
-                showError(data.error);
-                return;
-            }
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("username", name); // Store username
-            updateSideMenuLoggedIn(name); // Update side menu immediately
-            vendorModal.style.display = "none";
-            loadVendorProfile();
-        })
-        .catch(() => showError("Server error. Please try again."));
-    }
-
-    /* ========= LOGIN ========= */
-    else {
-        fetch(`${API_BASE}/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username: name })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.error) {
-                showError(data.error);
-                return;
-            }
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("username", data.vendor.username); // Store username from response
-            updateSideMenuLoggedIn(data.vendor.username); // Update side menu immediately
-            vendorModal.style.display = "none";
-            loadVendorProfile();
-        })
-        .catch(() => showError("Server error. Please try again."));
-    }
-});
-
-if (sideLogoutBtn) {
-    sideLogoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("username");
-        updateSideMenuLoggedOut();
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", name);
+        localStorage.setItem("stall", stall);
+        updateSideMenuLoggedIn(name);
         vendorModal.style.display = "none";
-    });
+        loadVendorProfile();
+        // Refresh the page after 0.3-0.6 seconds to ensure updates
+        setTimeout(() => {
+            window.location.reload();
+        }, Math.random() * 300 + 300); // Random delay between 300 and 600 ms
+    })
+    .catch(() => showError("Server error. Please try again."));
 }
+
+/* ========= LOGIN ========= */
+else {
+    fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: name })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            showError(data.error);
+            return;
+        }
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.vendor.username);
+        localStorage.setItem("stall", data.vendor.stall);
+        updateSideMenuLoggedIn(data.vendor.username);
+        vendorModal.style.display = "none";
+        loadVendorProfile();
+        // Refresh the page after 0.3-0.6 seconds to ensure updates
+        setTimeout(() => {
+            window.location.reload();
+        }, Math.random() * 300 + 300); // Random delay between 300 and 600 ms
+    })
+    .catch(() => showError("Server error. Please try again."));
+}
+});
 
 function showLoginMode() {
     isLoginMode = true;
@@ -533,19 +603,6 @@ function showRegisterMode() {
 if (toggleAuth) {
     toggleAuth.addEventListener("click", () => {
         isLoginMode ? showRegisterMode() : showLoginMode();
-    });
-}
-
-/* =========================
-   LOG OUT
-========================= */
-
-if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("username");
-        vendorModal.style.display = "none";
-        if (dailyQuizBtn) dailyQuizBtn.style.display = "none";
     });
 }
 
@@ -746,6 +803,48 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         updateSideMenuLoggedOut();
     }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const chickenRiceCard = document.getElementById("chickenRice");
+    const kebabCard = document.getElementById("kebab");
+
+    if (!chickenRiceCard || !kebabCard) return;
+
+    // Check if user is logged in and stall is "Chicken Rice Stall" or "Turkish & Mediterranean Kebab Stall"
+    const token = localStorage.getItem("token");
+    const stall = localStorage.getItem("stall");
+
+    if (token && stall === "Chicken Rice Stall") {
+        // Hide Kebab card for Chicken Rice Stall vendors
+        kebabCard.style.display = "none";
+    } else if (token && stall === "Turkish & Mediterranean Kebab Stall") {
+        // Hide Chicken Rice card for Kebab Stall vendors
+        chickenRiceCard.style.display = "none";
+    }
+    // For students (not logged in or no stall), show both cards (default behavior)
+
+    chickenRiceCard.addEventListener("click", () => {
+        // Vendor → Vendor page
+        if (token && stall && stall === "Chicken Rice Stall") {
+            window.location.href = "ChickenRiceVendor.html";
+        } 
+        // Student → Normal menu page
+        else {
+            window.location.href = "ChickenRice.html";
+        }
+    });
+
+    kebabCard.addEventListener("click", () => {
+        // Vendor → Vendor page
+        if (token && stall && stall === "Turkish & Mediterranean Kebab Stall") {
+            window.location.href = "kebabVendor.html";
+        } 
+        // Student → Normal menu page
+        else {
+            window.location.href = "kebab.html";
+        }
+    });
 });
 
 if (wasteCount) wasteCount.textContent = "0";

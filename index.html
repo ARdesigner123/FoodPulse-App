@@ -71,7 +71,11 @@
 
             <!-- AUTH SECTION -->
             <div id="authSection">
-                <h3 id="modalTitle">FoodPulse Membership</h3>
+                <!-- PAGE HEADER -->
+                <div class="page-header">
+                    <a href="index.html" class="back-btn">&#8592;</a>
+                    <h2 class="page-title" id="modalTitle">FoodPulse Membership</h2>
+                </div>
                 <p class="modal-subtitle" id="modalSubtitle">For Food Court Vendors</p>
 
                 <div class="input-group">
@@ -222,31 +226,29 @@
     </div>
 
     <!-- ================= MAIN CONTENT ================= -->
-    <div class="container">
-        <h2 id="menuTitle">Menu Categories</h2>
+<div class="container">
+    <h2 id="menuTitle">Menu Categories</h2>
 
-        <div class="menu-grid">
-            <!-- Chicken Rice -->
-             <div class="menu-card" id="chickenRice" style="background-image:url('static/images/chicken_rice.jpg');">
-                <div class="menu-overlay">
-                    <span>Chicken Rice</span>
-                </div>
-            </div>
-
-            <!-- Kebab -->
-            <div class="menu-card" id="kebab" style="background-image:url('static/images/kebab.jpg');">
-                <div class="menu-overlay">
-                    <span>Kebab</span>
-                </div>
-            </div>
+    <div class="menu-grid">
+        <!-- Chicken Rice -->
+        <div class="menu-card" id="chickenRice" data-food="chicken-rice" style="background-image:url('static/images/chicken_rice.jpg');">
+            <div class="menu-overlay"> <span>Chicken Rice</span> </div>
         </div>
 
-        <div class="action-buttons">
-            <button class="primary-btn" id="scheduleBtn">Student Schedule</button>
-            <button class="secondary-btn" id="trackerBtn">Food Tracker</button>
-            <button class="secondary-btn" id="dailyQuizBtn" style="display:none; margin-top:12px;">📘 Daily Quiz</button>
+        <!-- Kebab -->
+        <div class="menu-card" id="kebab" style="background-image:url('static/images/kebab.jpg');">
+            <div class="menu-overlay">
+                <span>Kebab</span>
+            </div>
         </div>
     </div>
+
+    <div class="action-buttons">
+        <button class="primary-btn" id="scheduleBtn">Student Schedule</button>
+        <button class="secondary-btn" id="trackerBtn">Food Tracker</button>
+        <button class="secondary-btn" id="dailyQuizBtn" style="display:none; margin-top:12px;">📘 Daily Quiz</button>
+    </div>
+</div>
 
     <!-- ================= DAILY QUIZ MODAL ================= -->
     <div class="modal-overlay" id="quizModal" style="display:none;">

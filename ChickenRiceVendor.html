@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leftovers Available</title>
+    <meta name="viewport" content="width=390, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="phone-frame">
+    <div class="app-shell">
+
+        <!-- HEADER -->
+        <div class="food-header">
+            <a href="index.html" class="back-btn">&#8592;</a>
+            <h2>Leftovers Available</h2>
+        </div>
+
+        <!-- IMAGE -->
+        <img src="static/images/chicken_rice.jpg" class="food-image">
+
+        <div class="container order-page">
+
+            <!-- MAIN FOOD -->
+            <div class="order-card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3>Chicken Rice (Plain)</h3>
+                    <input type="number" placeholder="$ Price" class="price-input" id="vendorChickenRicePrice"> 
+                </div>
+                <label class="sub-label">Number of Dishes Available</label>
+                <input type="number" placeholder="e.g. 10" class="qty-input" id="vendorChickenRiceQuantity">
+            </div>
+
+            <!-- CHICKEN TYPE -->
+            <div class="order-card highlight-card">
+                <h3>Chicken Type</h3>
+                <div class="addon-row">
+                    <span>Roasted Chicken Portions</span>
+                    <input type="number" min="0" value="0" id="vendorRoastedPortions">
+                </div>
+                <div class="addon-row">
+                    <span>Steamed Chicken Portions</span>
+                    <input type="number" min="0" value="0" id="vendorSteamedPortions">
+                </div>
+            </div>
+
+            <!-- ADD ONS -->
+            <div class="order-card">
+                <h3>Add-ons</h3>
+                <div class="addon-row">
+                    <span>Extra Rice</span>
+                    <input type="number" placeholder="$ Price" class="small-input" id="vendorExtraRicePrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorExtraRiceQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Braised Egg</span>
+                    <input type="number" placeholder="$ Price" class="small-input" id="vendorBraisedEggPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorBraisedEggQuantity">
+                </div>
+                <div class="addon-row">
+                    <span>Extra Chicken</span>
+                    <input type="number" placeholder="$ Price" class="small-input" id="vendorExtraChickenPrice">
+                    <input type="number" placeholder="Qty" class="small-input" id="vendorExtraChickenQuantity">
+                </div>
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <p id="errorText" class="error-text" style="display:none; color: red; text-align: center;"></p>
+
+            <!-- LOG BUTTON -->
+            <button class="primary-btn confirm-btn" id="logLeftoversBtn">
+                Log Leftovers
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="static/chickenRice.js"></script>
+</body>
+</html>

@@ -1073,6 +1073,38 @@ p, span {
     box-shadow: 0 8px 20px rgba(193,18,31,0.4);
 }
 
+/* ===== Vendor Leftover Inputs ===== */
+.price-input {
+    width: 90px;
+    padding: 6px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: right;
+}
+
+.qty-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+}
+
+.small-input {
+    width: 70px;
+    padding: 6px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.sub-label {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+    display: block;
+}
+
 /* Schedule Page */
 .schedule-header {
     display: flex;
