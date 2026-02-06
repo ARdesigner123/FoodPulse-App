@@ -20,17 +20,50 @@
             <img src="static/images/logo.png" class="logo">
             <span class="app-name">SP FoodPulse</span>
         </div>
-
-        <div class="language-select">
-            <span id="langLabel">Language</span>
-            <select id="languageDropdown">
-                <option value="en" selected>English</option>
-                <option value="zh">Mandarin</option>
-                <option value="ta">Tamil</option>
-                <option value="ms">Malay</option>
-            </select>
-        </div>
     </nav>
+
+    <!-- SIDE MENU OVERLAY -->
+    <div class="side-overlay" id="sideOverlay"></div>
+
+    <!-- SIDE MENU -->
+    <div class="side-menu" id="sideMenu">
+        <h3>Menu</h3>
+
+        <!-- Vendor Name -->
+        <p id="sideVendorName" class="vendor-name" style="display:none;"></p>
+
+        <!-- Update Availability Button -->
+        <button class="side-btn primary"  id="sideUpdateAvailabilityBtn" style="display:none;">
+            📝 My Profile
+        </button>
+
+        <button class="side-btn" id="sideRegisterBtn">Register</button>
+        <button class="side-btn" id="sideLoginBtn">Login</button>
+
+        <button class="side-btn secondary" id="openLanguageBtn">
+            🌐 Language
+        </button>
+
+        <button class="side-btn secondary" id="sideLogoutBtn" style="display:none;">
+            🚪 Log Out
+        </button>
+
+        <button class="side-btn secondary" id="backContainerBtn">
+            ⬅ Back
+        </button>
+    </div>
+
+    <!-- LANGUAGE MENU -->
+    <div class="side-menu language-menu" id="languageMenu">
+        <h3>Select Language</h3>
+
+        <button class="side-btn" data-lang="en">English</button>
+        <button class="side-btn" data-lang="zh">Mandarin</button>
+        <button class="side-btn" data-lang="ms">Malay</button>
+        <button class="side-btn" data-lang="ta">Tamil</button>
+
+        <button class="side-btn secondary" id="backToMenuBtn">⬅ Back</button>
+    </div>
 
     <!-- ================= VENDOR MODAL ================= -->
     <div class="modal-overlay" id="vendorModal" style="display:none;">
@@ -82,9 +115,14 @@
                     <button class="tab-btn" data-tab="questTab">Quests</button>
                 </div>
 
+                <button class="profile-back-btn" id="profileBackBtn">
+                    ⬅ Back
+                </button>
+
                 <!-- PROFILE TAB -->
                 <div id="profileTab" class="tab-content active">
-                    <h3>Your Vendor Profile</h3>
+                    <div class="profile-card">
+                        <h3>Your Vendor Profile</h3>
 
                     <p><strong>Vendor Name:</strong><br><span id="profileName"></span></p>
 
@@ -120,9 +158,10 @@
                             </div>
                         </div>
                     </div>
+                    </div>                    
 
                     <!-- VENDOR EDIT -->
-                    <div id="vendorEditSection">
+                    <div id="vendorEditSection" class="profile-card highlight-card">
                         <h3>Update Food Availability</h3>
 
                         <label>Time Period</label>
@@ -137,19 +176,6 @@
                         <label>Availability (%)</label>
                         <input type="number" id="editPercent" min="0" max="100">
                         <button class="primary-btn" id="saveAvailability">Save</button>
-
-                        <h3>Closing Hour Discount</h3>
-
-                        <input type="text" id="foodName" placeholder="Food Name">
-                        <input type="number" id="originalPrice" placeholder="Original Price">
-                        <input type="number" id="discountedPrice" placeholder="Discounted Price">
-                        <input type="number" id="quantity" placeholder="Quantity">
-
-                        <select id="closingTime">
-                            <option>5pm-7pm</option>
-                        </select>
-
-                        <button class="primary-btn" id="saveClosingDiscount">Save Discount</button>
                         <p id="saveMsg"></p>
                     </div>
 
@@ -160,7 +186,8 @@
 
                 <!-- RANK TAB -->
                 <div id="rankTab" class="tab-content">
-                    <h3>Your Current Rank</h3>
+                    <div class="profile-card">
+                        <h3>Your Current Rank</h3>
                     <p class="rank-name">Starter</p>
 
                     <div class="xp-bar">
@@ -176,18 +203,20 @@
                         <li>Diamond - 1400 XP → 💰 140</li>
                         <li>Emerald - 2000 XP → 💰 200</li>
                     </ul>
+                    </div>
                 </div>
 
                 <!-- QUEST TAB -->
                 <div id="questTab" class="tab-content">
-                    <h3>Quests</h3>
+                    <div class="profile-card">
+                        <h3>Quests</h3>
                     <div class="quest-buttons">
                         <button class="secondary-btn">Daily</button>
                         <button class="secondary-btn">Weekly</button>
                         <button class="secondary-btn">Monthly</button>
                     </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -197,20 +226,24 @@
         <h2 id="menuTitle">Menu Categories</h2>
 
         <div class="menu-grid">
-            <div class="menu-card chinese" id="chinese"><div class="menu-overlay"><span>Chinese</span></div></div>
-            <div class="menu-card malay" id="malay"><div class="menu-overlay"><span>Malay</span></div></div>
-            <div class="menu-card western" id="western"><div class="menu-overlay"><span>Western</span></div></div>
-            <div class="menu-card korean" id="korean"><div class="menu-overlay"><span>Korean</span></div></div>
-            <div class="menu-card japanese" id="japanese"><div class="menu-overlay"><span>Japanese</span></div></div>
-            <div class="menu-card desserts" id="desserts"><div class="menu-overlay"><span>Desserts</span></div></div>
-            <div class="menu-card drinks" id="drinks"><div class="menu-overlay"><span>Drinks</span></div></div>
-            <div class="menu-card fruits" id="fruits"><div class="menu-overlay"><span>Fruits & Vegetables</span></div></div>
+            <!-- Chicken Rice -->
+             <div class="menu-card" id="chickenRice" style="background-image:url('static/images/chicken_rice.jpg');">
+                <div class="menu-overlay">
+                    <span>Chicken Rice</span>
+                </div>
+            </div>
+
+            <!-- Kebab -->
+            <div class="menu-card" id="kebab" style="background-image:url('static/images/kebab.jpg');">
+                <div class="menu-overlay">
+                    <span>Kebab</span>
+                </div>
+            </div>
         </div>
 
         <div class="action-buttons">
             <button class="primary-btn" id="scheduleBtn">Student Schedule</button>
             <button class="secondary-btn" id="trackerBtn">Food Tracker</button>
-            <button class="secondary-btn" id="closingHourBtn">Closing-Hour Discount</button>
             <button class="secondary-btn" id="dailyQuizBtn" style="display:none; margin-top:12px;">📘 Daily Quiz</button>
         </div>
     </div>

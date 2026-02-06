@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kebab Stall</title>
+    <meta name="viewport" content="width=390, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="phone-frame">
+    <div class="app-shell">
+
+        <!-- HEADER -->
+        <div class="food-header">
+            <a href="index.html" class="back-btn">&#8592;</a>
+            <h2>Kebab Stall</h2>
+        </div>
+
+        <!-- FOOD IMAGE -->
+        <img src="static/images/kebab.jpg" class="food-image">
+
+        <!-- CONTENT -->
+        <div class="container order-page">
+
+            <!-- MAIN DISH -->
+            <div class="order-card">
+                <h3>Main Dish (Choose 1)</h3>
+
+                <label class="order-option">
+                    <input type="radio" name="mainDish" checked>
+                    <span>Chicken Kebab Roll</span>
+                    <strong>$5.00</strong>
+                </label>
+
+                <label class="order-option">
+                    <input type="radio" name="mainDish">
+                    <span>Beef Kebab Roll</span>
+                    <strong>$5.50</strong>
+                </label>
+
+                <label class="order-option">
+                    <input type="radio" name="mainDish">
+                    <span>Kebab Rice</span>
+                    <strong>$6.00</strong>
+                </label>
+
+                <label class="order-option">
+                    <input type="radio" name="mainDish">
+                    <span>Kebab Salad Box</span>
+                    <strong>$6.00</strong>
+                </label>
+            </div>
+
+            <!-- ADD ONS -->
+            <div class="order-card highlight-card">
+                <h3>Add-ons</h3>
+
+                <div class="addon-row">
+                    <span>Extra Meat ($2.00)</span>
+                    <input type="number" min="0" value="0">
+                </div>
+
+                <div class="addon-row">
+                    <span>Add Cheese ($0.50)</span>
+                    <input type="number" min="0" value="0">
+                </div>
+
+                <div class="addon-row">
+                    <span>Extra Sauce</span>
+                    <input type="number" min="0" value="0">
+                </div>
+
+                <div class="addon-row">
+                    <span>Add Egg ($0.60)</span>
+                    <input type="number" min="0" value="0">
+                </div>
+            </div>
+
+            <!-- CONFIRM -->
+            <button class="primary-btn confirm-btn">
+                Confirm Order
+            </button>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

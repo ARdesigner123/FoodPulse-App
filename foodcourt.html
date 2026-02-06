@@ -10,33 +10,18 @@
 </head>
 <body>
 
-<div class="tablet-frame">
-
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="static/images/logo.png" class="logo">
-            <span class="app-name">SP FoodPulse Kiosk</span>
+<div class="phone-frame">
+    <div class="app-shell">
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <a href="index.html" class="back-btn">&#8592;</a>
+            <h2 class="page-title" id="foodTrackerTitle">Food Tracker</h2>  <!-- Added id="foodTrackerTitle" -->
         </div>
 
-        <div class="language-select">
-            <span id="langLabel">Language</span>
-            <select id="languageDropdown">
-                <option value="en" selected>English</option>
-                <option value="zh">Mandarin</option>
-                <option value="ta">Tamil</option>
-                <option value="ms">Malay</option>
-            </select>
-        </div>
-    </nav>
+        <!-- MAIN CONTENT -->
+        <div class="container">
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
-
-        <div class="title-bar">
-            <a href="./index.html" class="back-arrow">&#8592;</a>
-            <h2 class="center-title" id="pickFoodcourt">Pick Your Foodcourt</h2>
-        </div>
+            <h3 class="section-title" id="pickFoodcourt">Pick Your Foodcourt</h3>  <!-- Added id="pickFoodcourt" -->
 
         <div class="foodcourt-grid">
             <div class="foodcourt-card" data-fc="Food Court 1">
@@ -73,17 +58,18 @@
         <!-- FOODCOURT INFO PANEL -->
         <div id="fc-info-panel" class="fc-info-panel">
             <div class="fc-info-header">
+                <button class="fc-back-btn" id="closeFcPanel">&#8592;</button>
                 <h3 id="fc-title">Food Court 1</h3>
             </div>
             
             <div class="fc-section">
-                <h4 id="salesAvailable">Sales Available</h4>
+                <h4 id="salesAvailable">Sales Available</h4>  <!-- Added id="salesAvailable" -->
                 <ul class="stall-list">
                     <li><span>Chicken Rice</span> <span class="percent-text">80%</span><small>A student staple</small><div class="bar" data-percent="80"></div></li>
                     <li><span>Japanese Curry / Rice Bowls</span> <span class="percent-text">90%</span><small>Very popular</small><div class="bar" data-percent="90"></div></li>
                     <li><span>Western Cuisine</span> <span class="percent-text">75%</span><small>Pastas, chicken chops</small><div class="bar" data-percent="75"></div></li>
                     <li><span>Ban Mian / Fish Soup</span> <span class="percent-text">70%</span><div class="bar" data-percent="70"></div></li>
-                    <li><span>Mala Hotpot</span> <span class="percent-text">65%</span><div class="bar" data-percent="65"></div></li>
+                    <li><span>Mala Xiang Guo</span> <span class="percent-text">65%</span><div class="bar" data-percent="65"></div></li>
                     <li><span>Thai Cuisine</span> <span class="percent-text">60%</span><small>Basil chicken, noodles</small><div class="bar" data-percent="60"></div></li>
                     <li><span>Yong Tau Foo</span> <span class="percent-text">55%</span><div class="bar" data-percent="55"></div></li>
                     <li><span>Desserts</span> <span class="percent-text">85%</span><small>Ice Kacang etc.</small><div class="bar" data-percent="85"></div></li>
@@ -92,13 +78,13 @@
             </div>
             
             <div class="fc-section">
-                <h4 id="timePeriod">Time Period</h4>
+                <h4 id="timePeriod">Time Period</h4>  <!-- Added id="timePeriod" -->
                 <div class="time-buttons">
-                    <button data-time="8am-10am" id="time1">8am-10am</button>
-                    <button data-time="10am-12pm" class="active" id="time2">10am-12pm</button>
-                    <button data-time="12pm-3pm" id="time3">12pm-3pm</button>
-                    <button data-time="3pm-5pm" id="time4">3pm-5pm</button>
-                    <button data-time="5pm-7pm" id="time5">5pm-7pm</button>
+                    <button data-time="8am-10am" id="time1">8am-10am</button>  <!-- Added id="time1" -->
+                    <button data-time="10am-12pm" class="active" id="time2">10am-12pm</button>  <!-- Added id="time2" -->
+                    <button data-time="12pm-3pm" id="time3">12pm-3pm</button>  <!-- Added id="time3" -->
+                    <button data-time="3pm-5pm" id="time4">3pm-5pm</button>  <!-- Added id="time4" -->
+                    <button data-time="5pm-7pm" id="time5">5pm-7pm</button>  <!-- Added id="time5" -->
                 </div>
             </div>
         </div>

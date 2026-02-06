@@ -30,6 +30,13 @@ const tabContents = document.querySelectorAll(".tab-content");
 const wasteCount = document.getElementById("wasteCount");
 const streakCount = document.getElementById("streakCount");
 
+const sideUpdateAvailabilityBtn = document.getElementById("sideUpdateAvailabilityBtn");
+
+const sideVendorName = document.getElementById("sideVendorName");
+const sideRegisterBtn = document.getElementById("sideRegisterBtn");
+const sideLoginBtn = document.getElementById("sideLoginBtn");
+const sideLogoutBtn = document.getElementById("sideLogoutBtn");
+
 const logoutBtn = document.getElementById("logoutBtn");
 
 const dailyQuizBtn = document.getElementById("dailyQuizBtn");
@@ -41,6 +48,8 @@ const quizProgress = document.getElementById("quizProgress");
 const quizLives = document.getElementById("quizLives");
 const nextQuestionBtn = document.getElementById("nextQuestionBtn");
 
+const profileBackBtn = document.getElementById("profileBackBtn");
+
 const exitQuizBtn = document.getElementById("exitQuizBtn");
 let quizEnded = false;
 
@@ -51,6 +60,10 @@ let lives = 3;
 let isLoginMode = false;
 
 const API_BASE = "https://foodpulse-backend.onrender.com/api";
+
+// References to side menu elements for toggling
+const sideMenu = document.getElementById("sideMenu");
+const sideOverlay = document.getElementById("sideOverlay");
 
 /* =========================
    FOOD COURT → STALL DATA
@@ -169,56 +182,171 @@ const quizQuestions = [
     }
 ];
 
+function updateSideMenuLoggedIn(username) {
+    sideVendorName.textContent = `👤 ${username}`;
+    sideVendorName.style.display = "block";
+
+    sideRegisterBtn.style.display = "none";
+    sideLoginBtn.style.display = "none";
+
+    sideLogoutBtn.style.display = "block";
+    sideUpdateAvailabilityBtn.style.display = "block";
+}
+
+function updateSideMenuLoggedOut() {
+    const token = localStorage.getItem("token");
+    if (token) return;
+
+    sideVendorName.style.display = "none";
+    sideUpdateAvailabilityBtn.style.display = "none";
+
+    sideRegisterBtn.style.display = "block";
+    sideLoginBtn.style.display = "block";
+
+    sideLogoutBtn.style.display = "none";
+}
+
+if (sideUpdateAvailabilityBtn) {
+    sideUpdateAvailabilityBtn.addEventListener("click", () => {
+        // Close side menu
+        sideMenu.style.display = "none";
+        sideOverlay.style.display = "none";
+
+        // Open vendor modal
+        vendorModal.style.display = "flex";
+
+        // Show PROFILE section
+        authSection.style.display = "none";
+        profileSection.style.display = "block";
+
+        // Animate in
+        profileSection.classList.remove("profile-slide-out");
+        profileSection.classList.add("profile-slide-in");
+
+        // Ensure Profile tab is active
+        tabButtons.forEach(b => b.classList.remove("active"));
+        tabContents.forEach(c => c.classList.remove("active"));
+
+        document.querySelector('[data-tab="profileTab"]').classList.add("active");
+        document.getElementById("profileTab").classList.add("active");
+
+        // Scroll to Vendor Edit section
+        const vendorEditSection = document.getElementById("vendorEditSection");
+        if (vendorEditSection) {
+            vendorEditSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
+}
+
+if (profileBackBtn) {
+    profileBackBtn.addEventListener("click", () => {
+
+        // Start slide-out animation
+        profileSection.classList.remove("profile-slide-in");
+        profileSection.classList.add("profile-slide-out");
+
+        // Wait for animation to finish
+        setTimeout(() => {
+            // Close profile modal
+            vendorModal.style.display = "none";
+
+            // Reset animation state (important for next open)
+            profileSection.classList.remove("profile-slide-out");
+
+            // Re-open side menu
+            sideMenu.style.display = "block";
+            sideOverlay.style.display = "block";
+
+            // Ensure correct side menu state
+            const username = localStorage.getItem("username");
+            if (username) {
+                updateSideMenuLoggedIn(username);
+            } else {
+                updateSideMenuLoggedOut();
+            }
+
+        }, 300); // must match CSS animation duration
+    });
+}
+
 /* =========================
    OPEN PROFILE MODAL
 ========================= */
-profileBtn.addEventListener("click", () => {
-    vendorModal.style.display = "flex";
-
+function loadVendorProfile() {
     const token = localStorage.getItem("token");
-
-    if (!token) {
-        profileSection.style.display = "none";
-        authSection.style.display = "block";
-        showRegisterMode();
-
-        // Hide Daily Quiz for guests
-        dailyQuizBtn.style.display = "none";
-        return;
-    }
+    if (!token) return;
 
     fetch(`${API_BASE}/profile`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
-    .then(res => {
-        if (!res.ok) throw new Error();
-        return res.json();
-    })
-    .then(user => {
-        if (user.stats) {
-            document.getElementById("coinAmount").textContent = user.stats.coins;
-            wasteCount.textContent = user.stats.reduced_waste;
-            streakCount.textContent = user.stats.daily_streak;
-        }
-        authSection.style.display = "none";
-        profileSection.style.display = "block";
+    .then(res => res.json())
+    .then(data => {
+        console.log("Profile loaded successfully.");
+        profileName.textContent = data.username;
+        profileFoodCourt.textContent = data.foodCourt;
+        profileStall.textContent = data.stall;
 
-        profileName.textContent = user.username;
-        profileFoodCourt.textContent = user.foodCourt || "";
-        profileStall.textContent = user.stall || "";
+        wasteCount.textContent = data.stats.reduced_waste || 0;
+        streakCount.textContent = data.stats.daily_streak || 0;
+        document.getElementById("coinAmount").textContent = data.stats.coins || 0;
 
-        // Show Daily Quiz button ONLY for logged-in users
-        dailyQuizBtn.style.display = "inline-block";
+        // Store username for side menu updates
+        localStorage.setItem("username", data.username);
+        updateSideMenuLoggedIn(data.username);
     })
     .catch(() => {
-        localStorage.removeItem("token");
-        showRegisterMode();
-
-        // Hide Daily Quiz if auth fails
-        dailyQuizBtn.style.display = "none";
+        console.log("Profile fetch failed. Not resetting side menu if logged in.");
+        // Do not call updateSideMenuLoggedOut() here to prevent state reset
+        // localStorage.removeItem("token"); // Optional: Uncomment if you want to clear token on failure
+        // localStorage.removeItem("username");
     });
+}
+
+/* =========================
+   PROFILE BUTTON: OPEN SIDE MENU AND UPDATE STATE (PERSISTENT)
+========================= */
+profileBtn.addEventListener("click", () => {
+    const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
+
+    if (token && username) {
+        // User is logged in: Ensure side menu stays in logged-in state
+        updateSideMenuLoggedIn(username);
+    } else {
+        // User is not logged in: Show register/login options
+        updateSideMenuLoggedOut();
+    }
+
+    // Toggle side menu visibility (assuming it's hidden by default)
+    sideMenu.style.display = "block";
+    sideOverlay.style.display = "block";
+
+    // Optional: If you prefer the profile button to open the vendor modal instead of the side menu,
+    // uncomment the code below and comment out the side menu toggle above.
+    // This opens the profile modal directly, avoiding side menu state issues.
+    /*
+    if (token) {
+        loadVendorProfile();
+        authSection.style.display = "none";
+        profileSection.style.display = "block";
+        vendorModal.style.display = "flex";
+    } else {
+        authSection.style.display = "block";
+        profileSection.style.display = "none";
+        vendorModal.style.display = "flex";
+    }
+    */
+});
+
+// Close side menu when clicking overlay
+sideOverlay.addEventListener("click", () => {
+    sideMenu.style.display = "none";
+    sideOverlay.style.display = "none";
 });
 
 /* =========================
@@ -330,7 +458,10 @@ actionBtn.addEventListener("click", () => {
                 return;
             }
             localStorage.setItem("token", data.token);
+            localStorage.setItem("username", name); // Store username
+            updateSideMenuLoggedIn(name); // Update side menu immediately
             vendorModal.style.display = "none";
+            loadVendorProfile();
         })
         .catch(() => showError("Server error. Please try again."));
     }
@@ -349,11 +480,23 @@ actionBtn.addEventListener("click", () => {
                 return;
             }
             localStorage.setItem("token", data.token);
+            localStorage.setItem("username", data.vendor.username); // Store username from response
+            updateSideMenuLoggedIn(data.vendor.username); // Update side menu immediately
             vendorModal.style.display = "none";
+            loadVendorProfile();
         })
         .catch(() => showError("Server error. Please try again."));
     }
 });
+
+if (sideLogoutBtn) {
+    sideLogoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        updateSideMenuLoggedOut();
+        vendorModal.style.display = "none";
+    });
+}
 
 function showLoginMode() {
     isLoginMode = true;
@@ -400,6 +543,7 @@ if (toggleAuth) {
 if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("username");
         vendorModal.style.display = "none";
         if (dailyQuizBtn) dailyQuizBtn.style.display = "none";
     });
@@ -564,15 +708,6 @@ if (exitQuizBtn) {
     });
 }
 
-function getRank(xp) {
-    if (xp >= 2000) return "Emerald";
-    if (xp >= 1400) return "Diamond";
-    if (xp >= 800) return "Gold";
-    if (xp >= 400) return "Silver";
-    if (xp >= 100) return "Bronze";
-    return "Starter";
-}
-
 if (nextQuestionBtn) {
     nextQuestionBtn.addEventListener("click", () => {
         currentQ++;
@@ -603,6 +738,15 @@ if (nextQuestionBtn) {
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        loadVendorProfile();
+    } else {
+        updateSideMenuLoggedOut();
+    }
+});
 
 if (wasteCount) wasteCount.textContent = "0";
 if (streakCount) streakCount.textContent = "0";
