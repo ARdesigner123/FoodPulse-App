@@ -827,11 +827,11 @@ document.addEventListener("DOMContentLoaded", () => {
     chickenRiceCard.addEventListener("click", () => {
         // Vendor → Vendor page
         if (token && stall && stall === "Chicken Rice Stall") {
-            window.location.href = "ChickenRiceVendor.html";
+            window.location.href = "chickenRiceVendor.html";
         } 
         // Student → Normal menu page
         else {
-            window.location.href = "ChickenRice.html";
+            window.location.href = "chickenRice.html";
         }
     });
 
