@@ -1420,6 +1420,134 @@ if (foodcourtGrid) {
         });
     }
 
+    /* ==================
+   GUIDE MODAL LOGIC
+====================*/
+
+const guideIcon = document.getElementById("guideIcon");
+const guideModal = document.getElementById("guideModal");
+const guideContent = document.getElementById("guideContent");
+const guideSubtitle = document.getElementById("guideSubtitle");
+const nextGuideBtn = document.getElementById("nextGuideBtn");
+const skipGuideBtn = document.getElementById("skipGuideBtn");
+const dontShowAgain = document.getElementById("dontShowAgain");
+
+// Guide steps
+const guideSteps = [
+    "What FoodPulse is about.",
+    "The food menu shows the choices of food you want to order.",
+    "The profile icon is to register as a member of FoodPulse if you are a vendor. And you can select a language you prefer.",
+    "The Student Schedule shows the academic calendar of different crowd levels on certain days. And the food tracker shows how much food is available.",
+    "The announcement showing the updated events by every semester and the notification bell shows whether there is an ongoing event this sem."
+];
+
+// Subtitles for each step
+const guideSubtitles = [
+    "WalkThrough",
+    "Food Menu",
+    "Profile",
+    "Academic Calendar",
+    "Announcement"
+];
+
+let currentStep = 0;
+
+// Function to update guide content
+function updateGuideContent() {
+    if (guideContent) guideContent.textContent = guideSteps[currentStep];
+    if (guideSubtitle) guideSubtitle.textContent = guideSubtitles[currentStep];
+    if (nextGuideBtn) {
+        nextGuideBtn.textContent = (currentStep === guideSteps.length - 1) ? "I'm Ready" : "Next";
+    }
+}
+
+// Auto-show guide on first load if not opted out
+if (guideModal && localStorage.getItem("dontShowGuide") !== "true") {
+    guideModal.style.display = "flex";
+    currentStep = 0;
+    updateGuideContent();
+}
+
+// Open guide modal (manual via ? icon, always available)
+if (guideIcon) {
+    guideIcon.addEventListener("click", () => {
+        if (guideModal) {
+            guideModal.style.display = "flex";
+            currentStep = 0;
+            updateGuideContent();
+        }
+    });
+}
+
+// Next button
+if (nextGuideBtn) {
+    nextGuideBtn.addEventListener("click", () => {
+        if (currentStep < guideSteps.length - 1) {
+            currentStep++;
+            updateGuideContent();
+        } else {
+            // Last step: Close modal
+            if (guideModal) guideModal.style.display = "none";
+        }
+    });
+}
+
+// Skip button
+if (skipGuideBtn) {
+    skipGuideBtn.addEventListener("click", () => {
+        if (guideModal) guideModal.style.display = "none";
+    });
+}
+
+// Close modal on overlay click
+if (guideModal) {
+    guideModal.addEventListener("click", (e) => {
+        if (e.target === guideModal) {
+            guideModal.style.display = "none";
+        }
+    });
+}
+
+// Handle "Don't show again" (only affects auto-show on login)
+if (dontShowAgain) {
+    dontShowAgain.addEventListener("change", () => {
+        if (dontShowAgain.checked) {
+            localStorage.setItem("dontShowGuide", "true");
+        } else {
+            localStorage.removeItem("dontShowGuide");
+        }
+    });
+}
+
+    /* ==================
+       NOTIFICATION BELL LOGIC
+    =====================*/
+
+    const notificationBell = document.getElementById("notificationBell");
+    const notificationModal = document.getElementById("notificationModal");
+    const closeNotificationBtn = document.getElementById("closeNotificationBtn");
+
+    if (notificationBell) {
+        notificationBell.addEventListener("click", () => {
+            notificationModal.style.display = "flex";
+        });
+    }
+
+    if (closeNotificationBtn) {
+        closeNotificationBtn.addEventListener("click", () => {
+            notificationModal.style.display = "none";
+        });
+    }
+
+    // Close modal on overlay click (similar to existing modals)
+    if (notificationModal) {
+        notificationModal.addEventListener("click", (e) => {
+            if (e.target === notificationModal) {
+                notificationModal.style.display = "none";
+            }
+        });
+    }
+
     /* =========================
        SCHEDULE PAGE LOGIC
     ========================== */

@@ -11,16 +11,23 @@
 <div class="phone-frame">
     <div class="app-shell">
         <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="static/images/VendorProfile.png"
-                 class="nav-icon profile-icon"
-                 id="profileBtn"
-                 alt="Vendor Profile">
-            <img src="static/images/logo.png" class="logo">
-            <span class="app-name">SP FoodPulse</span>
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="static/images/VendorProfile.png"
+             class="nav-icon profile-icon"
+             id="profileBtn"
+             alt="Vendor Profile">
+        <img src="static/images/logo.png" class="logo">
+        <span class="app-name">SP FoodPulse</span>
+    </div>
+    <div class="nav-right">
+        <div class="guide-icon" id="guideIcon">?</div>
+        <div class="notification-bell" id="notificationBell">
+            🔔
+            <span class="notification-badge" id="notificationBadge">2</span>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- SIDE MENU OVERLAY -->
     <div class="side-overlay" id="sideOverlay"></div>
@@ -246,7 +253,58 @@
     <div class="action-buttons">
         <button class="primary-btn" id="scheduleBtn">Student Schedule</button>
         <button class="secondary-btn" id="trackerBtn">Food Tracker</button>
+        <div class="announcement-section">
+            <p class="announcement-text">Announcement</p>
+            <div class="announcement-container">
+                <div class="update-item">
+                    <h4>25 Feb</h4>
+                    <p>A-Level Results Release window</p>
+                </div>
+                <div class="update-item">
+                    <h4>1-5 Mar</h4>
+                    <p>Final Exams & Mugging Period</p>
+                </div>
+            </div>
+        </div>
         <button class="secondary-btn" id="dailyQuizBtn" style="display:none; margin-top:12px;">📘 Daily Quiz</button>
+    </div>
+</div>
+
+<!-- ================= GUIDE MODAL ================= -->
+<div class="modal-overlay" id="guideModal" style="display:none;">
+    <div class="modal-card guide-card">
+        <h3 id="guideTitle">FoodPulse Guide</h3>
+        <p id="guideSubtitle">WalkThrough</p>
+        <div class="guide-content-container">
+            <p id="guideContent">What FoodPulse is about.</p>
+        </div>
+        <div class="guide-controls">
+            <label class="dont-show-again">
+                <input type="checkbox" id="dontShowAgain"> Don't show again
+            </label>
+            <div class="guide-buttons">
+                <button class="secondary-btn" id="skipGuideBtn">Skip</button>
+                <button class="primary-btn" id="nextGuideBtn">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= NOTIFICATION MODAL ================= -->
+<div class="modal-overlay" id="notificationModal" style="display:none;">
+    <div class="modal-card notification-card">
+        <h3>Updates</h3>
+        <div class="update-list">
+            <div class="update-item">
+                <h4>This Sem, A-Level Results Release window (Feb 25)</h4>
+                <p>Details about the A-Level results release.</p>
+            </div>
+            <div class="update-item">
+                <h4>Final Exams & Mugging Period (Mar 1-5)</h4>
+                <p>Information on final exams and preparation period.</p>
+            </div>
+        </div>
+        <button class="primary-btn" id="closeNotificationBtn">Close</button>
     </div>
 </div>
 
