@@ -1,14 +1,8 @@
 const translations = {
     en: {
         menuTitle: "Food Court Menu",
-        chinese: "Chinese",
-        malay: "Malay",
-        korean: "Korean",
-        western: "Western",
-        japanese: "Japanese",
-        desserts: "Desserts",
-        drinks: "Drinks",
-        fruits: "Fruits",
+        chickenRice: "Chicken Rice",
+        kebab: "Kebab",
         scheduleBtn: "Academic Schedule",
         trackerBtn: "Food Tracker",
         closingHourBtn: "Closing-Hour Discount",
@@ -30,6 +24,47 @@ const translations = {
         chineseMenuTitle: "Chinese Food Menu",
         gpsTitle: "GPS Map of Singapore Polytechnic",
         gpsHint: "Tap a Food Court button to view its location",
+        menu: "🍽 Menu",
+        myProfile: "📝 My Profile",
+        register: "Register",
+        login: "Login",
+        logout: "🚪 Log Out",
+        language: "🌐 Language",
+        back: "⬅ Back",
+        foodPulseMembership: "FoodPulse Membership",
+        forFoodCourtVendors: "For Food Court Vendors",
+        enterVendorName: "Enter Vendor Name",
+        selectFoodCourt: "Select Food Court",
+        selectFoodStall: "Select Food Stall",
+        alreadyAMemberSignIn: "Already a member? Sign In",
+        profile: "Profile",
+        rank: "Rank",
+        quests: "Quests",
+        yourVendorProfile: "Your Vendor Profile",
+        vendorName: "Vendor Name:",
+        foodCourt: "Food Court:",
+        foodStall: "Food Stall:",
+        foodPulseCurrency: "FoodPulse Currency",
+        reduceFoodWaste: "Reduce Food Waste",
+        dailyStreak: "Daily Streak",
+        updateFoodAvailability: "Update Food Availability",
+        timePeriod: "Time Period",
+        availability: "Availability (%)",
+        save: "Save",
+        logOut: "Log Out",
+        yourCurrentRank: "Your Current Rank",
+        starter: "Starter",
+        xpToBronze: "XP to Bronze",
+        bronze: "Bronze - 100 XP → 💰 10",
+        silver: "Silver - 400 XP → 💰 40",
+        gold: "Gold - 800 XP → 💰 80",
+        diamond: "Diamond - 1400 XP → 💰 140",
+        emerald: "Emerald - 2000 XP → 💰 200",
+        quests: "Quests",
+        daily: "Daily",
+        weekly: "Weekly",
+        monthly: "Monthly",
+        dishes: "Dishes",
         foodCourts: {
             fc1: "Food Court 1",
             fc2: "Food Court 2",
@@ -71,14 +106,8 @@ const translations = {
     },
     zh: {
         menuTitle: "美食广场菜单",
-        chinese: "中餐",
-        malay: "马来餐",
-        western: "西餐",
-        korean: "韩餐",
-        japanese: "日餐",
-        desserts: "甜点",
-        drinks: "饮料",
-        fruits: "水果",
+        chickenRice: "鸡饭",
+        kebab: "烤肉串",
         scheduleBtn: "学术日程",
         trackerBtn: "食物追踪器",
         closingHourBtn: "临近下班时段折扣",
@@ -100,6 +129,47 @@ const translations = {
         chineseMenuTitle: "中式美食菜单",
         gpsTitle: "新加坡理工学院 GPS 地图",
         gpsHint: "点击食阁按钮查看位置",
+        menu: "🍽 菜单",
+        myProfile: "📝 我的资料",
+        register: "注册",
+        login: "登录",
+        logout: "🚪 登出",
+        language: "🌐 语言",
+        back: "⬅ 返回",
+        foodPulseMembership: "FoodPulse 会员资格",
+        forFoodCourtVendors: "面向美食广场供应商",
+        enterVendorName: "输入供应商名称",
+        selectFoodCourt: "选择美食广场",
+        selectFoodStall: "选择美食摊位",
+        alreadyAMemberSignIn: "已经是会员？登录",
+        profile: "资料",
+        rank: "等级",
+        quests: "任务",
+        yourVendorProfile: "您的供应商资料",
+        vendorName: "供应商名称：",
+        foodCourt: "美食广场：",
+        foodStall: "美食摊位：",
+        foodPulseCurrency: "FoodPulse 货币",
+        reduceFoodWaste: "减少食物浪费",
+        dailyStreak: "每日连胜",
+        updateFoodAvailability: "更新食物可用性",
+        timePeriod: "时间段",
+        availability: "可用性 (%)",
+        save: "保存",
+        logOut: "登出",
+        yourCurrentRank: "您的当前等级",
+        starter: "新手",
+        xpToBronze: "经验值到青铜",
+        bronze: "青铜 - 100 XP → 💰 10",
+        silver: "白银 - 400 XP → 💰 40",
+        gold: "黄金 - 800 XP → 💰 80",
+        diamond: "钻石 - 1400 XP → 💰 140",
+        emerald: "翡翠 - 2000 XP → 💰 200",
+        quests: "任务",
+        daily: "每日",
+        weekly: "每周",
+        monthly: "每月",
+        dishes: "菜肴",
         foodCourts: {
             fc1: "食阁 1",
             fc2: "食阁 2",
@@ -140,14 +210,8 @@ const translations = {
     },
     ta: {
         menuTitle: "உணவு நிலைய மெனு",
-        chinese: "சீன உணவு",
-        malay: "மலாய் உணவு",
-        western: "மேற்கத்திய உணவு",
-        korean: "கொரியன் உணவு",
-        japanese: "ஜப்பானிய உணவு",
-        desserts: "இனிப்புகள்",
-        drinks: "பானங்கள்",
-        fruits: "பழங்கள்",
+        chickenRice: "கோழி சாதம்",
+        kebab: "கேபாப்",
         scheduleBtn: "கல்வி அட்டவணை",
         trackerBtn: "உணவு கண்காணிப்பாளர்",
         closingHourBtn: "இறுதி நேர தள்ளுபடி",
@@ -169,6 +233,47 @@ const translations = {
         chineseMenuTitle: "சீன உணவு மெனு",
         gpsTitle: "சிங்கப்பூர் பாலிடெக்னிக் GPS வரைபடம்",
         gpsHint: "இடத்தை பார்க்க உணவக பொத்தானை அழுத்தவும்",
+        menu: "🍽 மெனு",
+        myProfile: "📝 என் சுயவிவரம்",
+        register: "பதிவு செய்யவும்",
+        login: "உள்நுழையவும்",
+        logout: "🚪 வெளியேறு",
+        language: "🌐 மொழி",
+        back: "⬅ பின்செல்",
+        foodPulseMembership: "FoodPulse உறுப்பினர் தகுதி",
+        forFoodCourtVendors: "உணவு நிலைய விற்பனையாளர்களுக்கு",
+        enterVendorName: "விற்பனையாளர் பெயரை உள்ளீடு செய்யவும்",
+        selectFoodCourt: "உணவு நிலையைத் தேர்ந்தெடுக்கவும்",
+        selectFoodStall: "உணவு கடையைத் தேர்ந்தெடுக்கவும்",
+        alreadyAMemberSignIn: "ஏற்கனவே உறுப்பினரா? உள்நுழையவும்",
+        profile: "சுயவிவரம்",
+        rank: "தரவரிசை",
+        quests: "பணிகள்",
+        yourVendorProfile: "உங்கள் விற்பனையாளர் சுயவிவரம்",
+        vendorName: "விற்பனையாளர் பெயர்:",
+        foodCourt: "உணவு நிலையம்:",
+        foodStall: "உணவு கடை:",
+        foodPulseCurrency: "FoodPulse நாணயம்",
+        reduceFoodWaste: "உணவு கழிவை குறைக்கவும்",
+        dailyStreak: "தினசரி தொடர்",
+        updateFoodAvailability: "உணவு கிடைப்பை புதுப்பிக்கவும்",
+        timePeriod: "நேர காலம்",
+        availability: "கிடைப்பு (%)",
+        save: "சேமிக்கவும்",
+        logOut: "வெளியேறு",
+        yourCurrentRank: "உங்கள் தற்போதைய தரவரிசை",
+        starter: "தொடக்கம்",
+        xpToBronze: "XP முதல் வெண்கலம்",
+        bronze: "வெண்கலம் - 100 XP → 💰 10",
+        silver: "வெள்ளி - 400 XP → 💰 40",
+        gold: "தங்கம் - 800 XP → 💰 80",
+        diamond: "வைரம் - 1400 XP → 💰 140",
+        emerald: "பச்சை - 2000 XP → 💰 200",
+        quests: "பணிகள்",
+        daily: "தினசரி",
+        weekly: "வாராந்திர",
+        monthly: "மாதாந்திர",
+        dishes: "பயிர்கள்",
         foodCourts: {
             fc1: "உணவகம் 1",
             fc2: "உணவகம் 2",
@@ -239,14 +344,8 @@ foodTrackerTitle: "உணவு கண்காணிப்பாளர்"  // 
 },
 ms: {
 menuTitle: "Menu Dewan Makan",
-chinese: "Cina",
-malay: "Melayu",
-western: "Barat",
-korean: "Korea",
-japanese: "Jepun",
-desserts: "Pencuci Mulut",
-drinks: "Minuman",
-fruits: "Buah-buahan",
+chickenRice: "Nasi Ayam",
+kebab: "Kebab",
 scheduleBtn: "Jadual Akademik",
 trackerBtn: "Penjejak Makanan",
 closingHourBtn: "Diskaun Jam Tutup",
@@ -268,6 +367,47 @@ time5: "5 petang-7 malam",
 chineseMenuTitle: "Menu Makanan Cina",
 gpsTitle: "Peta GPS Politeknik Singapura",
 gpsHint: "Tekan butang dewan makan untuk melihat lokasi",
+menu: "🍽 Menu",
+myProfile: "📝 Profil Saya",
+register: "Daftar",
+login: "Log Masuk",
+logout: "🚪 Log Keluar",
+language: "🌐 Bahasa",
+back: "⬅ Kembali",
+foodPulseMembership: "Keahlian FoodPulse",
+forFoodCourtVendors: "Untuk Penjual Dewan Makan",
+enterVendorName: "Masukkan Nama Penjual",
+selectFoodCourt: "Pilih Dewan Makan",
+selectFoodStall: "Pilih Gerai Makanan",
+alreadyAMemberSignIn: "Sudah ahli? Log Masuk",
+profile: "Profil",
+rank: "Pangkat",
+quests: "Tugasan",
+yourVendorProfile: "Profil Penjual Anda",
+vendorName: "Nama Penjual:",
+foodCourt: "Dewan Makan:",
+foodStall: "Gerai Makanan:",
+foodPulseCurrency: "Mata Wang FoodPulse",
+reduceFoodWaste: "Kurangkan Sisa Makanan",
+dailyStreak: "Rentak Harian",
+updateFoodAvailability: "Kemas Kini Ketersediaan Makanan",
+timePeriod: "Tempoh Masa",
+availability: "Ketersediaan (%)",
+save: "Simpan",
+logOut: "Log Keluar",
+yourCurrentRank: "Pangkat Semasa Anda",
+starter: "Permulaan",
+xpToBronze: "XP ke Gangsa",
+bronze: "Gangsa - 100 XP → 💰 10",
+silver: "Perak - 400 XP → 💰 40",
+gold: "Emas - 800 XP → 💰 80",
+diamond: "Berlian - 1400 XP → 💰 140",
+emerald: "Zamrud - 2000 XP → 💰 200",
+quests: "Tugasan",
+daily: "Harian",
+weekly: "Mingguan",
+monthly: "Bulanan",
+dishes: "Hidangan",
 foodCourtNames: {
     "Food Court 1": "Dewan Makan 1",
     "Food Court 2": "Dewan Makan 2",
@@ -337,7 +477,6 @@ foodTrackerTitle: "Penjejak Makanan"  // Added translation
 }
 };
 
-// Data for Food Courts with translated descriptions
 // Data for Food Courts with translated descriptions
 const fcData = {
 "Food Court 1": {
@@ -809,6 +948,149 @@ function applyLanguage(lang) {
         document.getElementById("scheduleBtn").innerText = t.scheduleBtn;
         document.getElementById("trackerBtn").innerText = t.trackerBtn;
     }
+
+    // Update menu card texts for Chicken Rice and Kebab
+    if (document.getElementById("chickenRice")) {
+        document.querySelector("#chickenRice .menu-overlay span").innerText = t.chickenRice;
+    }
+    if (document.getElementById("kebab")) {
+        document.querySelector("#kebab .menu-overlay span").innerText = t.kebab;
+    }
+
+    // Update side menu button texts
+    if (document.getElementById("sidemenuTitle")) {
+        document.getElementById("sidemenuTitle").innerText = t.menu;
+    }
+    if (document.getElementById("sideUpdateAvailabilityBtn")) {
+        document.getElementById("sideUpdateAvailabilityBtn").innerText = t.myProfile;
+    }
+    if (document.getElementById("sideRegisterBtn")) {
+        document.getElementById("sideRegisterBtn").innerText = t.register;
+    }
+    if (document.getElementById("sideLoginBtn")) {
+        document.getElementById("sideLoginBtn").innerText = t.login;
+    }
+    if (document.getElementById("sideLogoutBtn")) {
+        document.getElementById("sideLogoutBtn").innerText = t.logout;
+    }
+    if (document.getElementById("openLanguageBtn")) {
+        document.getElementById("openLanguageBtn").innerText = t.language;
+    }
+    if (document.getElementById("backContainerBtn")) {
+        document.getElementById("backContainerBtn").innerText = t.back;
+    }
+    
+    // Update vendor modal texts
+if (document.getElementById("modalTitle")) {
+    document.getElementById("modalTitle").textContent = t.foodPulseMembership;
+}
+if (document.getElementById("modalSubtitle")) {
+    document.getElementById("modalSubtitle").textContent = t.forFoodCourtVendors;
+}
+if (document.querySelector("#authSection label[for='vendorName']")) {
+    document.querySelector("#authSection label[for='vendorName']").textContent = t.enterVendorName;
+}
+if (document.querySelector("#authSection select[id='vendorFoodCourt'] option:first-child")) {
+    document.querySelector("#authSection select[id='vendorFoodCourt'] option:first-child").textContent = t.selectFoodCourt;
+}
+if (document.querySelector("#authSection select[id='vendorStall'] option:first-child")) {
+    document.querySelector("#authSection select[id='vendorStall'] option:first-child").textContent = t.selectFoodStall;
+}
+if (document.getElementById("actionBtn")) {
+    document.getElementById("actionBtn").textContent = t.register; // Assuming register mode by default; adjust if needed
+}
+if (document.getElementById("toggleAuth")) {
+    document.getElementById("toggleAuth").textContent = t.alreadyAMemberSignIn;
+}
+// Profile section tabs
+if (document.querySelector(".profile-tabs button[data-tab='profileTab']")) {
+    document.querySelector(".profile-tabs button[data-tab='profileTab']").textContent = t.profile;
+}
+if (document.querySelector(".profile-tabs button[data-tab='rankTab']")) {
+    document.querySelector(".profile-tabs button[data-tab='rankTab']").textContent = t.rank;
+}
+if (document.querySelector(".profile-tabs button[data-tab='questTab']")) {
+    document.querySelector(".profile-tabs button[data-tab='questTab']").textContent = t.quests;
+}
+// Profile tab content
+if (document.querySelector("#profileTab h3")) {
+    document.querySelector("#profileTab h3").textContent = t.yourVendorProfile;
+}
+if (document.querySelector("#profileTab p:nth-child(2) strong")) {
+    document.querySelector("#profileTab p:nth-child(2) strong").textContent = t.vendorName;
+}
+if (document.querySelector("#profileTab p:nth-child(3) strong")) {
+    document.querySelector("#profileTab p:nth-child(3) strong").textContent = t.foodCourt;
+}
+if (document.querySelector("#profileTab p:nth-child(4) strong")) {
+    document.querySelector("#profileTab p:nth-child(4) strong").textContent = t.foodStall;
+}
+if (document.querySelector("#profileTab .stat-row:nth-child(1) .stat-label")) {
+    document.querySelector("#profileTab .stat-row:nth-child(1) .stat-label").textContent = t.foodPulseCurrency;
+}
+if (document.querySelector("#profileTab .stat-row:nth-child(2) .stat-label")) {
+    document.querySelector("#profileTab .stat-row:nth-child(2) .stat-label").textContent = t.reduceFoodWaste;
+}
+if (document.querySelector("#profileTab .stat-row:nth-child(3) .stat-label")) {
+    document.querySelector("#profileTab .stat-row:nth-child(3) .stat-label").textContent = t.dailyStreak;
+}
+if (document.querySelector("#profileTab .stat-row:nth-child(2) .stat-sub")) {
+    document.querySelector("#profileTab .stat-row:nth-child(2) .stat-sub").textContent = t.dishes;
+}
+if (document.querySelector("#vendorEditSection h3")) {
+    document.querySelector("#vendorEditSection h3").textContent = t.updateFoodAvailability;
+}
+if (document.querySelector("#vendorEditSection label:first-of-type")) {
+    document.querySelector("#vendorEditSection label:first-of-type").textContent = t.timePeriod;
+}
+if (document.querySelector("#vendorEditSection label:nth-of-type(2)")) {
+    document.querySelector("#vendorEditSection label:nth-of-type(2)").textContent = t.availability;
+}
+if (document.getElementById("saveAvailability")) {
+    document.getElementById("saveAvailability").textContent = t.save;
+}
+if (document.getElementById("logoutBtn")) {
+    document.getElementById("logoutBtn").textContent = t.logOut;
+}
+// Rank tab content
+if (document.querySelector("#rankTab h3")) {
+    document.querySelector("#rankTab h3").textContent = t.yourCurrentRank;
+}
+if (document.querySelector("#rankTab .rank-name")) {
+    document.querySelector("#rankTab .rank-name").textContent = t.starter;
+}
+if (document.querySelector("#rankTab .xp-text")) {
+    const xpText = document.querySelector("#rankTab .xp-text").textContent;
+    document.querySelector("#rankTab .xp-text").textContent = xpText.replace("XP to Bronze", t.xpToBronze);
+}
+if (document.querySelector("#rankTab .reward-list li:nth-child(1)")) {
+    document.querySelector("#rankTab .reward-list li:nth-child(1)").textContent = t.bronze;
+}
+if (document.querySelector("#rankTab .reward-list li:nth-child(2)")) {
+    document.querySelector("#rankTab .reward-list li:nth-child(2)").textContent = t.silver;
+}
+if (document.querySelector("#rankTab .reward-list li:nth-child(3)")) {
+    document.querySelector("#rankTab .reward-list li:nth-child(3)").textContent = t.gold;
+}
+if (document.querySelector("#rankTab .reward-list li:nth-child(4)")) {
+    document.querySelector("#rankTab .reward-list li:nth-child(4)").textContent = t.diamond;
+}
+if (document.querySelector("#rankTab .reward-list li:nth-child(5)")) {
+    document.querySelector("#rankTab .reward-list li:nth-child(5)").textContent = t.emerald;
+}
+// Quest tab content
+if (document.querySelector("#questTab h3")) {
+    document.querySelector("#questTab h3").textContent = t.quests;
+}
+if (document.querySelector("#questTab .quest-buttons button:nth-child(1)")) {
+    document.querySelector("#questTab .quest-buttons button:nth-child(1)").textContent = t.daily;
+}
+if (document.querySelector("#questTab .quest-buttons button:nth-child(2)")) {
+    document.querySelector("#questTab .quest-buttons button:nth-child(2)").textContent = t.weekly;
+}
+if (document.querySelector("#questTab .quest-buttons button:nth-child(3)")) {
+    document.querySelector("#questTab .quest-buttons button:nth-child(3)").textContent = t.monthly;
+}
 
     /* ========= SCHEDULE PAGE ========= */
     if (document.getElementById("pageTitle")) {

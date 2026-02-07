@@ -25,13 +25,6 @@ const bbqSauceQuantity = document.getElementById("bbqSauceQuantity");
 const tomatoSauceQuantity = document.getElementById("tomatoSauceQuantity");
 
 // Elements for kebabVendor.html (Vendor View)
-const vendorChickenKebabPrice = document.getElementById("vendorChickenKebabPrice");
-const vendorBeefKebabPrice = document.getElementById("vendorBeefKebabPrice");
-const vendorMixedKebabPrice = document.getElementById("vendorMixedKebabPrice");
-const vendorWholemealWrapPrice = document.getElementById("vendorWholemealWrapPrice");
-const vendorCheesePrice = document.getElementById("vendorCheesePrice");
-const vendorEggPrice = document.getElementById("vendorEggPrice");
-const vendorExtraMeatPrice = document.getElementById("vendorExtraMeatPrice");
 const vendorChickenKebabQuantity = document.getElementById("vendorChickenKebabQuantity");
 const vendorBeefKebabQuantity = document.getElementById("vendorBeefKebabQuantity");
 const vendorMixedKebabQuantity = document.getElementById("vendorMixedKebabQuantity");
@@ -110,15 +103,8 @@ if (logLeftoversBtn) {
             return;
         }
 
-        // Validation
+        // Validation: Check for blanks, non-numeric, or negative values (quantities only)
         const inputs = [
-            { value: vendorChickenKebabPrice.value, name: "Chicken Kebab Price" },
-            { value: vendorBeefKebabPrice.value, name: "Beef Kebab Price" },
-            { value: vendorMixedKebabPrice.value, name: "Mixed Kebab Price" },
-            { value: vendorWholemealWrapPrice.value, name: "Wholemeal Wrap Price" },
-            { value: vendorCheesePrice.value, name: "Cheese Price" },
-            { value: vendorEggPrice.value, name: "Egg Price" },
-            { value: vendorExtraMeatPrice.value, name: "Extra Meat Price" },
             { value: vendorChickenKebabQuantity.value, name: "Chicken Kebab Quantity" },
             { value: vendorBeefKebabQuantity.value, name: "Beef Kebab Quantity" },
             { value: vendorMixedKebabQuantity.value, name: "Mixed Kebab Quantity" },
@@ -144,13 +130,13 @@ if (logLeftoversBtn) {
         }
 
         const payload = {
-            chickenKebabPrice: parseFloat(vendorChickenKebabPrice.value),
-            beefKebabPrice: parseFloat(vendorBeefKebabPrice.value),
-            mixedKebabPrice: parseFloat(vendorMixedKebabPrice.value),
-            wholemealWrapPrice: parseFloat(vendorWholemealWrapPrice.value),
-            cheesePrice: parseFloat(vendorCheesePrice.value),
-            eggPrice: parseFloat(vendorEggPrice.value),
-            extraMeatPrice: parseFloat(vendorExtraMeatPrice.value),
+            chickenKebabPrice: 4.50, // Fixed price
+            beefKebabPrice: 5.00, // Fixed price
+            mixedKebabPrice: 5.50, // Fixed price
+            wholemealWrapPrice: 0.30, // Fixed price
+            cheesePrice: 0.50, // Fixed price
+            eggPrice: 0.60, // Fixed price
+            extraMeatPrice: 2.00, // Fixed price
             chickenKebabQuantity: parseInt(vendorChickenKebabQuantity.value),
             beefKebabQuantity: parseInt(vendorBeefKebabQuantity.value),
             mixedKebabQuantity: parseInt(vendorMixedKebabQuantity.value),
