@@ -135,51 +135,106 @@ const quizQuestions = [
             "Plate waste from consumers"
         ],
         answer: 2,
-        info: "Vendors often over-produce food, leading to large amounts of cooked food being discarded at closing."
+        info: "While plate waste is high, vendors often struggle with over-production, leading to large amounts of cooked food being thrown away at closing."
     },
     {
-        q: "What is a 'closed-loop' food waste system?",
+        q: "What is a 'closed-loop' food waste system often implemented in Singaporean institutions?",
         options: [
             "Sharing leftovers with other vendors",
-            "Turning food waste into compost or water on-site",
-            "Banning takeaway containers",
+            "Turning food waste into compost or non-potable water on-site",
+            "Banning all take-away containers",
             "Recycling plastic spoons"
         ],
         answer: 1,
-        info: "Food digesters convert waste into fertilizer or non-potable water."
+        info: "Systems like food digesters (which SP has utilized) process waste into fertilizer or water."
     },
     {
-        q: "Which is a major barrier for food donation?",
+        q: "Which of these is a major barrier for SP vendors when trying to donate surplus food?",
         options: [
             "Lack of appetite from students",
-            "Food safety and liability concerns",
-            "High cost of bags",
-            "Security regulations"
+            "Concerns over food safety and liability",
+            "High cost of biodegradable bags",
+            "Campus security regulations"
         ],
         answer: 1,
-        info: "Vendors fear legal repercussions despite the Good Samaritan Act."
+        info: "Vendors often fear legal repercussions if someone falls ill from donated 'old' food, despite the Good Samaritan Food Donation Act."
     },
     {
-        q: "How can smart scales reduce waste?",
+        q: "How can 'Smart Scales' help SP vendors reduce waste?",
         options: [
-            "Weigh students",
-            "Track food waste patterns",
-            "Standardize portions",
-            "Charge by tray weight"
+            "By weighing students to see how much they eat",
+            "By tracking the type and weight of food thrown away to identify patterns",
+            "By ensuring every portion is exactly the same size",
+            "By charging customers based on the weight of their tray"
         ],
         answer: 1,
-        info: "Data helps vendors identify over-prepared dishes."
+        info: "Data allows vendors to see if they are consistently over-preparing specific dishes."
     },
     {
-        q: "What does the Clean Plate Campaign target?",
+        q: "What is the primary purpose of the 'Clean Plate Campaign' often seen in polytechnics?",
         options: [
-            "Water savings",
-            "Increased sales",
-            "Reducing plate waste",
-            "Faster cleaning"
+            "To save water on dishwashing",
+            "To encourage students to buy more food",
+            "To reduce consumer-generated plate waste",
+            "To help vendors clean their stalls faster"
         ],
         answer: 2,
-        info: "It encourages students to only order what they can finish."
+        info: "It focuses on behavioral change, encouraging diners to only order what they can finish."
+    },
+    {
+        q: "In the 'Waste Hierarchy,' which action is more preferred than recycling food waste?",
+        options: [
+            "Landfilling",
+            "Incineration",
+            "Reduction at the source",
+            "Composting"
+        ],
+        answer: 2,
+        info: "Preventing waste from being created in the first place is always the most sustainable option."
+    },
+    {
+        q: "Which pricing strategy can help vendors clear stock before the food court closes?",
+        options: [
+            "Increasing prices for dinner",
+            "Flash sales or 'Happy Hour' discounts in the final hour",
+            "Fixed pricing regardless of time",
+            "Buy-one-get-one-free at lunch"
+        ],
+        answer: 1,
+        info: "This incentivizes students to buy remaining portions that would otherwise be discarded."
+    },
+    {
+        q: "What is 'Plate Waste' specifically?",
+        options: [
+            "The energy used to wash plates",
+            "Food that is dropped on the floor",
+            "Edible food left behind by consumers after a meal",
+            "Broken ceramic plates"
+        ],
+        answer: 2,
+        info: "This is a key metric for schools to measure how 'appetizing' or 'right-sized' the portions are."
+    },
+    {
+        q: "Which NEA (National Environment Agency) initiative affects large food waste generators in Singapore?",
+        options: [
+            "The No-Plastic-Straw Law",
+            "Mandatory reporting and segregation of food waste",
+            "The Free Meal Voucher Scheme",
+            "The High-Sugar Drink Ban"
+        ],
+        answer: 1,
+        info: "Large commercial and industrial buildings (including some campuses) are now required to segregate food waste for treatment."
+    },
+    {
+        q: "How can 'Ugly Food' programs help SP vendors?",
+        options: [
+            "By making the stall look less modern",
+            "By serving food that is expired",
+            "By using bruised or oddly shaped produce that is still safe to eat",
+            "By reducing the price of napkins"
+        ],
+        answer: 2,
+        info: "Using 'imperfect' vegetables in soups or sauces reduces wholesale waste and costs."
     }
 ];
 
@@ -295,6 +350,77 @@ function loadVendorProfile() {
         wasteCount.textContent = data.stats.reduced_waste || 0;
         streakCount.textContent = data.stats.daily_streak || 0;
         document.getElementById("coinAmount").textContent = data.stats.coins || 0;
+
+        // Update Rank tab
+        const rankName = document.querySelector(".rank-name");
+        const xpProgress = document.querySelector(".xp-progress");
+        const xpText = document.querySelector(".xp-text");
+
+        const currentXP = data.stats.xp;
+        const currentRank = data.stats.rank; // Use rank from DB
+        const ranks = [
+            { rank: "Starter", min_xp: 0 },
+            { rank: "Bronze", min_xp: 100 },
+            { rank: "Silver", min_xp: 400 },
+            { rank: "Gold", min_xp: 800 },
+            { rank: "Diamond", min_xp: 1400 },
+            { rank: "Emerald", min_xp: 2000 }
+        ];
+
+        // Find next rank
+        let nextRank = null;
+        let nextRankMinXP = null;
+        for (let i = 0; i < ranks.length; i++) {
+            if (ranks[i].rank === currentRank && i < ranks.length - 1) {
+                nextRank = ranks[i + 1].rank;
+                nextRankMinXP = ranks[i + 1].min_xp;
+                break;
+            }
+        }
+
+        // Check if streak needs to reset (24 hours passed since last quiz)
+        const lastQuizDate = data.stats.last_quiz_date;
+        if (lastQuizDate) {
+            const lastDate = new Date(lastQuizDate);
+            const now = new Date();
+            const timeDiff = now - lastDate;
+            if (timeDiff > 24 * 60 * 60 * 1000) {
+                // Reset streak to 0
+                fetch(`${API_BASE}/reset-streak`, {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(() => {
+                    streakCount.textContent = 0; // Update UI
+                })
+                .catch(() => console.log("Failed to reset streak"));
+            }
+        }
+
+        if (token) {
+            document.getElementById("dailyQuizBtn").style.display = "block";
+        }
+
+        if (rankName) rankName.textContent = currentRank;
+
+        loadQuests('daily'); // Load daily quests
+
+        // Calculate progress for current level
+        let progressPercent = 100; // Default to full if max rank
+        let xpTextContent = "Max Rank Reached";
+
+        if (nextRank) {
+            const currentRankMinXP = ranks.find(r => r.rank === currentRank).min_xp;
+            const levelXP = currentXP - currentRankMinXP;
+            const levelXPRequired = nextRankMinXP - currentRankMinXP;
+            progressPercent = (levelXP / levelXPRequired) * 100;
+            xpTextContent = `${levelXP} / ${levelXPRequired} XP to ${nextRank}`;
+        }
+
+        if (xpProgress) xpProgress.style.width = `${progressPercent}%`;
+        if (xpText) xpText.textContent = xpTextContent;
 
         // Store username for side menu updates
         localStorage.setItem("username", data.username);
@@ -651,27 +777,201 @@ tabButtons.forEach(btn => {
     });
 });
 
-if (dailyQuizBtn) {
-    dailyQuizBtn.addEventListener("click", () => {
-        const lastPlayed = localStorage.getItem("dailyQuizTime");
-        const now = Date.now();
+// Add quest-related variables
+let currentQuestType = 'daily'; // Default to daily
+let questTimers = {}; // To manage timers for each type
 
-        if (lastPlayed && now - lastPlayed < 24 * 60 * 60 * 1000) {
-            alert("Daily Quiz already completed. Come back tomorrow!");
+// Function to load quests for a type
+function loadQuests(type) {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    fetch(`${API_BASE}/quests?type=${type}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const questContainer = document.querySelector("#questTab .quest-content");
+        const completedContainer = document.querySelector("#questTab .completed-quest-list");
+        if (!questContainer || !completedContainer) return;
+
+        // Load active quests (only non-completed)
+        questContainer.innerHTML = `
+            <div class="quest-timer" id="quest-timer-${type}">Timer: Calculating...</div>
+            ${data.quests.map(quest => `
+                <div class="quest-item" data-quest-id="${quest.id}">
+                    <h4>${quest.title}</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${quest.progress}%"></div>
+                    </div>
+                    <p>${Math.floor((quest.progress / 100) * quest.maxProgress)}/${quest.maxProgress}</p>
+                    ${quest.progress >= 100 ? '<button class="complete-btn">Complete Quest</button>' : ''}
+                </div>
+            `).join('')}
+        `;
+
+        // Load completed quests
+        completedContainer.innerHTML = data.completedQuests.map(quest => `
+            <div class="quest-item completed">
+                <h4>${quest.title} ✅</h4>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <p>Completed</p>
+            </div>
+        `).join('');
+
+        // Start timer for the type
+        startQuestTimer(type, data.timeLeft);
+
+        // Add event listeners for complete buttons
+        document.querySelectorAll('.complete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const questId = e.target.closest('.quest-item').dataset.questId;
+                completeQuest(questId, type);
+            });
+        });
+    });
+}
+
+// Function to start quest timer (Singapore time)
+function startQuestTimer(type, initialTimeLeft) {
+    if (questTimers[type]) clearInterval(questTimers[type]);
+
+    let timeLeft = initialTimeLeft;
+    const timerElement = document.getElementById(`quest-timer-${type}`);
+
+    questTimers[type] = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(questTimers[type]);
+            loadQuests(type); // Refresh quests
             return;
         }
 
-        quizSet = quizQuestions.sort(() => 0.5 - Math.random()).slice(0, 3);
-        currentQ = 0;
-        lives = 3;
-        quizEnded = false;
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        timerElement.textContent = `Time until reset: ${hours}h ${minutes}m ${seconds}s`;
 
-        quizOptions.forEach(btn => btn.style.display = "block");
-        if (exitQuizBtn) exitQuizBtn.style.display = "none";
+        timeLeft -= 1000;
+    }, 1000);
+}
 
-        quizModal.style.display = "flex";
-        loadQuestion();
+// Function to complete a quest
+function completeQuest(questId, type) {
+    const token = localStorage.getItem("token");
+    const questItem = document.querySelector(`.quest-item[data-quest-id="${questId}"]`);
+    const completedContainer = document.querySelector("#questTab .completed-quest-list");
+
+    if (!questItem || !completedContainer) return;
+
+    // Immediately move the quest to completed section and update its appearance
+    questItem.classList.add("completed");
+    questItem.querySelector("h4").textContent += " ✅";
+    questItem.querySelector("p").textContent = "Completed";
+    questItem.querySelector(".progress-fill").style.width = "100%";
+    const completeBtn = questItem.querySelector(".complete-btn");
+    if (completeBtn) completeBtn.remove();
+
+    // Move to completed quests
+    completedContainer.appendChild(questItem);
+
+    // Now send the request to the server
+    fetch(`${API_BASE}/complete-quest`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ questId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Update profile and rank after server confirmation
+        document.getElementById("coinAmount").textContent = data.coins;
+        loadVendorProfile(); // Refresh profile
+        // No need to refresh quests here since we already moved it
+    })
+    .catch(err => {
+        console.error('Error completing quest:', err);
+        // If error, revert the move (optional: add logic to put it back if needed)
     });
+}
+
+let countdownInterval; // Global variable to manage the countdown interval
+
+if (dailyQuizBtn) {
+    dailyQuizBtn.addEventListener("click", () => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        // Check quiz status from server
+        fetch(`${API_BASE}/quiz-status`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.available) {
+                // Start quiz
+                quizSet = quizQuestions.sort(() => 0.5 - Math.random()).slice(0, 3);
+                currentQ = 0;
+                lives = 3;
+                quizEnded = false;
+
+                quizOptions.forEach(btn => btn.style.display = "block");
+                if (exitQuizBtn) exitQuizBtn.style.display = "none";
+
+                quizModal.style.display = "flex";
+                loadQuestion();
+            } else {
+                // Show timer modal with countdown
+                quizQuestionText.innerHTML = `
+                    <strong>24 Hour Timer</strong><br><br>
+                    <div id="countdown">Time remaining: Calculating...</div>
+                `;
+                quizOptions.forEach(btn => btn.style.display = "none");
+                quizInfo.style.display = "none";
+                quizProgress.textContent = "";
+                quizLives.textContent = "";
+                nextQuestionBtn.style.display = "none";
+                exitQuizBtn.style.display = "inline-block";
+                quizModal.style.display = "flex";
+
+                // Start countdown with time left from server
+                startCountdown(data.timeLeft);
+            }
+        })
+        .catch(() => alert("Error checking quiz status."));
+    });
+}
+
+function startCountdown(initialTimeLeft) {
+    // Clear any existing countdown interval
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+    }
+
+    const countdownElement = document.getElementById("countdown");
+    let timeLeft = initialTimeLeft;
+
+    countdownInterval = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            countdownInterval = null; // Reset
+            quizModal.style.display = "none";
+            // Quiz is now available at midnight (Singapore time)
+            return;
+        }
+
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        countdownElement.textContent = `Time until midnight (Singapore): ${hours}h ${minutes}m ${seconds}s`;
+
+        timeLeft -= 1000; // Decrement by 1 second
+    }, 1000);
 }
 
 function loadQuestion() {
@@ -713,9 +1013,79 @@ quizOptions.forEach(btn => {
             setTimeout(() => {
                 currentQ++;
                 if (currentQ >= 3) {
-                    localStorage.setItem("dailyQuizTime", Date.now());
-                    alert("Quiz completed 🎉");
-                    quizModal.style.display = "none";
+                    // Quiz completed successfully
+                    const token = localStorage.getItem("token");
+
+                    fetch(`${API_BASE}/quiz-complete`, {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(reward => {
+                        quizQuestionText.innerHTML = `
+                            <strong>Congrats 🎉</strong><br><br>
+                            You Won 50 XP and 5 FoodPulse Coins!
+                        `;
+                        quizOptions.forEach(btn => btn.style.display = "none");
+                        quizInfo.style.display = "none";
+                        quizProgress.textContent = "";
+                        quizLives.textContent = "";
+                        nextQuestionBtn.style.display = "none";
+                        exitQuizBtn.style.display = "inline-block";
+                        document.getElementById("coinAmount").textContent = reward.coins;
+                        streakCount.textContent = reward.streak;
+
+                        // Update Rank tab with new XP
+                        const rankName = document.querySelector(".rank-name");
+                        const xpProgress = document.querySelector(".xp-progress");
+                        const xpText = document.querySelector(".xp-text");
+
+                        const currentXP = reward.xp; // Use the updated XP from server
+                        const ranks = [
+                            { rank: "Starter", min_xp: 0 },
+                            { rank: "Bronze", min_xp: 100 },
+                            { rank: "Silver", min_xp: 400 },
+                            { rank: "Gold", min_xp: 800 },
+                            { rank: "Diamond", min_xp: 1400 },
+                            { rank: "Emerald", min_xp: 2000 }
+                        ];
+
+                        // Find current rank (highest where XP >= min_xp)
+                        let currentRank = "Starter";
+                        let currentRankMinXP = 0;
+                        let nextRank = null;
+                        let nextRankMinXP = null;
+
+                        for (let i = ranks.length - 1; i >= 0; i--) {
+                            if (currentXP >= ranks[i].min_xp) {
+                                currentRank = ranks[i].rank;
+                                currentRankMinXP = ranks[i].min_xp;
+                                if (i < ranks.length - 1) {
+                                    nextRank = ranks[i + 1].rank;
+                                    nextRankMinXP = ranks[i + 1].min_xp;
+                                }
+                                break;
+                            }
+                        }
+
+                        if (rankName) rankName.textContent = currentRank;
+
+                        // Calculate progress for current level
+                        let progressPercent = 100; // Default to full if max rank
+                        let xpTextContent = "Max Rank Reached";
+
+                        if (nextRank) {
+                            const levelXP = currentXP - currentRankMinXP;
+                            const levelXPRequired = nextRankMinXP - currentRankMinXP;
+                            progressPercent = (levelXP / levelXPRequired) * 100;
+                            xpTextContent = `${levelXP} / ${levelXPRequired} XP to ${nextRank}`;
+                        }
+
+                        if (xpProgress) xpProgress.style.width = `${progressPercent}%`;
+                        if (xpText) xpText.textContent = xpTextContent;
+                    });
                 } else {
                     loadQuestion();
                 }
@@ -728,7 +1098,33 @@ quizOptions.forEach(btn => {
             quizLives.textContent = "🍎".repeat(lives);
 
             if (lives === 0) {
-                endQuizShowAnswers();
+                // Quiz failed
+                quizEnded = true;
+                const token = localStorage.getItem("token");
+
+                // Update attempt (streak and date) even on failure
+                fetch(`${API_BASE}/quiz-attempt`, {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(res => res.json())
+                .then(reward => {
+                    streakCount.textContent = reward.streak; // Update streak in UI
+                })
+                .catch(() => console.log("Failed to update attempt"));
+
+                quizQuestionText.innerHTML = `
+                    <strong>You Lost The Daily Quiz ❌</strong><br><br>
+                    You Failed to earn 50 XP and 5 FoodPulse Coins.
+                `;
+                quizOptions.forEach(btn => btn.style.display = "none");
+                quizInfo.style.display = "none";
+                quizProgress.textContent = "";
+                quizLives.textContent = "";
+                nextQuestionBtn.style.display = "none";
+                exitQuizBtn.style.display = "inline-block";
             }
         }
     });
@@ -753,6 +1149,11 @@ function endQuizShowAnswers() {
 
 if (exitQuizBtn) {
     exitQuizBtn.addEventListener("click", () => {
+        // Clear countdown on exit
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
         quizModal.style.display = "none";
         quizEnded = false;
 
@@ -844,6 +1245,14 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
             window.location.href = "kebab.html";
         }
+    });
+});
+
+// Add event listeners for quest buttons
+document.querySelectorAll('.quest-buttons .secondary-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentQuestType = btn.textContent.toLowerCase();
+        loadQuests(currentQuestType);
     });
 });
 

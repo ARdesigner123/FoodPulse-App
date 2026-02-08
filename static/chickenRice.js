@@ -22,13 +22,22 @@ const vendorExtraChickenQuantity = document.getElementById("vendorExtraChickenQu
 const logLeftoversBtn = document.getElementById("logLeftoversBtn");
 const errorText = document.getElementById("errorText");
 
+// New elements for disabling
+const mainDishRadio = document.getElementById("mainDishRadio");
+const roastedRadio = document.getElementById("roastedRadio");
+const steamedRadio = document.getElementById("steamedRadio");
+const extraRiceInput = document.getElementById("extraRiceInput");
+const braisedEggInput = document.getElementById("braisedEggInput");
+const extraChickenInput = document.getElementById("extraChickenInput");
+const confirmBtn = document.getElementById("confirmBtn");
+
 // Load data for students (ChickenRice.html)
 function loadChickenRiceData() {
     fetch(`${API_BASE}/chicken-rice`)
         .then(res => res.json())
         .then(data => {
             if (data.length > 0) {
-                const item = data[0]; // Assuming one vendor for simplicity; adjust if multiple
+                const item = data[0];
                 if (chickenRicePrice) chickenRicePrice.textContent = `$${item.chicken_rice_price}`;
                 if (chickenRiceQuantity) chickenRiceQuantity.textContent = item.chicken_rice_quantity;
                 if (roastedPortions) roastedPortions.textContent = item.roasted_portions;
@@ -39,6 +48,14 @@ function loadChickenRiceData() {
                 if (braisedEggQuantity) braisedEggQuantity.textContent = item.braised_egg_quantity;
                 if (extraChickenPrice) extraChickenPrice.textContent = `$${item.extra_chicken_price}`;
                 if (extraChickenQuantity) extraChickenQuantity.textContent = item.extra_chicken_quantity;
+
+                // Disable options if quantity is 0
+                if (mainDishRadio) mainDishRadio.disabled = item.chicken_rice_quantity <= 0;
+                if (roastedRadio) roastedRadio.disabled = item.roasted_portions <= 0;
+                if (steamedRadio) steamedRadio.disabled = item.steamed_portions <= 0;
+                if (extraRiceInput) extraRiceInput.disabled = item.extra_rice_quantity <= 0;
+                if (braisedEggInput) braisedEggInput.disabled = item.braised_egg_quantity <= 0;
+                if (extraChickenInput) extraChickenInput.disabled = item.extra_chicken_quantity <= 0;
             }
         })
         .catch(() => console.log("Error loading chicken rice data"));
@@ -117,6 +134,53 @@ if (logLeftoversBtn) {
             }
         })
         .catch(() => showError("Server error. Please try again."));
+    });
+}
+
+// Confirm Order for students
+if (confirmBtn) {
+    confirmBtn.addEventListener("click", () => {
+        // Collect selected options
+        const mainDish = document.querySelector('input[name="mainDish"]:checked');
+        const chickenType = document.querySelector('input[name="chickenType"]:checked');
+        const extraRice = parseInt(extraRiceInput?.value || 0);
+        const braisedEgg = parseInt(braisedEggInput?.value || 0);
+        const extraChicken = parseInt(extraChickenInput?.value || 0);
+
+        // Validate selections (ensure quantities are available)
+        const payload = {
+            mainDish: mainDish ? 1 : 0, // 1 if selected
+            chickenType: chickenType ? chickenType.value : null, // Use value attribute
+            extraRice,
+            braisedEgg,
+            extraChicken
+        };
+
+        fetch(`${API_BASE}/confirm-order`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                // Show success modal instead of alert
+                const successModal = document.getElementById("successModal");
+                if (successModal) successModal.style.display = "flex";
+                loadChickenRiceData(); // Reload to update quantities and disable options
+            } else {
+                alert("Error: " + data.error);
+            }
+        })
+        .catch(() => alert("Server error. Please try again."));
+    });
+}
+
+// Back to home button
+const backToHomeBtn = document.getElementById("backToHomeBtn");
+if (backToHomeBtn) {
+    backToHomeBtn.addEventListener("click", () => {
+        window.location.href = "index.html";
     });
 }
 

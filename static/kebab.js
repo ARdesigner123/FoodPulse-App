@@ -43,6 +43,11 @@ const vendorTomatoSauceQuantity = document.getElementById("vendorTomatoSauceQuan
 const logLeftoversBtn = document.getElementById("logLeftoversBtn");
 const errorText = document.getElementById("errorText");
 
+// New elements for success modal and confirm button
+const confirmBtn = document.getElementById("confirmBtn");
+const successModal = document.getElementById("successModal");
+const backToHomeBtn = document.getElementById("backToHomeBtn");
+
 // Load data for students (kebab.html)
 function loadKebabData() {
     fetch(`${API_BASE}/kebab`)
@@ -171,6 +176,60 @@ if (logLeftoversBtn) {
             }
         })
         .catch(() => showError("Server error. Please try again."));
+    });
+}
+
+// Confirm Order for students
+if (confirmBtn) {
+    confirmBtn.addEventListener("click", () => {
+        // Collect selected options
+        const mainDish = document.querySelector('input[name="mainDish"]:checked');
+        const wrapType = document.querySelector('input[name="wrapType"]:checked');
+        const baseType = document.querySelector('input[name="baseType"]:checked');
+        const sauces = document.querySelector('input[name="sauces"]:checked');
+        const cheese = parseInt(document.getElementById("cheeseInput").value || 0);
+        const egg = parseInt(document.getElementById("eggInput").value || 0);
+        const extraMeat = parseInt(document.getElementById("extraMeatInput").value || 0);
+
+        // Validate selections (ensure main dish is selected and quantities are available)
+        if (!mainDish) {
+            alert("Please select a main dish.");
+            return;
+        }
+
+        const payload = {
+            mainDish: mainDish.value, // Now has value, e.g., "Chicken Kebab Roll"
+            wrapType: wrapType ? wrapType.value : "Regular Wrap", // Default if not selected
+            baseType: baseType ? baseType.value : "Standard Base (Vegetables)", // Default if not selected
+            sauces: sauces ? sauces.value : null,
+            cheese,
+            egg,
+            extraMeat
+        };
+
+        fetch(`${API_BASE}/confirm-kebab-order`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                // Show success modal
+                if (successModal) successModal.style.display = "flex";
+                loadKebabData(); // Reload to update quantities
+            } else {
+                alert("Error: " + data.error);
+            }
+        })
+        .catch(() => alert("Server error. Please try again."));
+    });
+}
+
+// Back to home button
+if (backToHomeBtn) {
+    backToHomeBtn.addEventListener("click", () => {
+        window.location.href = "index.html";
     });
 }
 

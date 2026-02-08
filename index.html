@@ -144,17 +144,17 @@
 
                         <!-- FoodPulse Currency -->
                         <div class="stat-row">
-                            <span class="stat-label">FoodPulse Currency</span>
-                            <div class="stat-value">
+                            <span class="stat-label red-text">FoodPulse Currency</span>
+                            <div class="stat-value red-value">
                                 <span id="coinAmount">0</span>
                                 <img src="static/images/FoodPulseCoin.png" class="coin-icon">
                             </div>
                         </div>
 
                         <!-- Reduce Food Waste -->
-                        <div class="stat-row">
+                        <div class="stat-row green-text">
                             <span class="stat-label">Reduce Food Waste</span>
-                            <div class="stat-value green">
+                            <div class="stat-value">
                                 <span id="wasteCount">0</span>
                                 <span class="stat-sub">Dishes</span>
                             </div>
@@ -162,7 +162,7 @@
 
                         <!-- Daily Streak -->
                         <div class="stat-row">
-                            <span class="stat-label">Daily Streak</span>
+                            <span class="stat-label orange-text">Daily Streak</span>
                             <div class="stat-value orange">
                                 <span id="streakCount">0</span>
                                 <span class="fire">🔥</span>
@@ -197,23 +197,39 @@
 
                 <!-- RANK TAB -->
                 <div id="rankTab" class="tab-content">
-                    <div class="profile-card">
+                    <div class="profile-card rank-card">
                         <h3>Your Current Rank</h3>
-                    <p class="rank-name">Starter</p>
+                        <p class="rank-name">Starter</p>
 
-                    <div class="xp-bar">
-                        <div class="xp-progress" style="width:0%;"></div>
-                    </div>
-                    
-                    <p class="xp-text">0 / 100 XP to Bronze</p>
+                        <div class="xp-bar">
+                            <div class="xp-progress" style="width:0%;"></div>
+                        </div>
+        
+                        <p class="xp-text">0 / 100 XP to Bronze</p>
 
-                    <ul class="reward-list">
-                        <li>Bronze - 100 XP → 💰 10</li>
-                        <li>Silver - 400 XP → 💰 40</li>
-                        <li>Gold - 800 XP → 💰 80</li>
-                        <li>Diamond - 1400 XP → 💰 140</li>
-                        <li>Emerald - 2000 XP → 💰 200</li>
-                    </ul>
+                        <h4>Rewards</h4>
+                        <ul class="reward-list">
+                            <li class="reward-item bronze">
+                                <span class="reward-icon">🥉</span>
+                                <span class="reward-details">Bronze - 100 XP → 💰 10</span>
+                            </li>
+                            <li class="reward-item silver">
+                                <span class="reward-icon">🥈</span>
+                                <span class="reward-details">Silver - 400 XP → 💰 40</span>
+                            </li>
+                            <li class="reward-item gold">
+                                <span class="reward-icon">🥇</span>
+                                <span class="reward-details">Gold - 800 XP → 💰 80</span>
+                            </li>
+                            <li class="reward-item diamond">
+                                <span class="reward-icon">💎</span>
+                                <span class="reward-details">Diamond - 1400 XP → 💰 140</span>
+                            </li>
+                            <li class="reward-item emerald">
+                                <span class="reward-icon">💚</span>
+                                <span class="reward-details">Emerald - 2000 XP → 💰 200</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -221,11 +237,20 @@
                 <div id="questTab" class="tab-content">
                     <div class="profile-card">
                         <h3>Quests</h3>
-                    <div class="quest-buttons">
-                        <button class="secondary-btn">Daily</button>
-                        <button class="secondary-btn">Weekly</button>
-                        <button class="secondary-btn">Monthly</button>
-                    </div>
+                        <div class="quest-buttons">
+                            <button class="secondary-btn">Daily</button>
+                            <button class="secondary-btn">Weekly</button>
+                            <button class="secondary-btn">Monthly</button>
+                        </div>
+                        <div class="quest-content">
+                            <!-- Active quests will be loaded here -->
+                        </div>
+                        <div class="completed-quests">
+                            <h4>Completed Quests</h4>
+                            <div class="completed-quest-list">
+                                <!-- Completed quests will be loaded here -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -253,6 +278,7 @@
     <div class="action-buttons">
         <button class="primary-btn" id="scheduleBtn">Student Schedule</button>
         <button class="secondary-btn" id="trackerBtn">Food Tracker</button>
+        <button class="secondary-btn" id="dailyQuizBtn" style="display:none;">📘 Daily Quiz</button>
         <div class="announcement-section">
             <p class="announcement-text">Announcement</p>
             <div class="announcement-container">
@@ -266,7 +292,6 @@
                 </div>
             </div>
         </div>
-        <button class="secondary-btn" id="dailyQuizBtn" style="display:none; margin-top:12px;">📘 Daily Quiz</button>
     </div>
 </div>
 

@@ -24,121 +24,130 @@
         <div class="container order-page">
 
             <!-- MAIN DISH -->
-            <div class="order-card">
-                <h3>Main Dish (Choose 1)</h3>
-                <label class="order-option">
-                    <input type="radio" name="mainDish" checked>
-                    <span>Chicken Kebab Roll</span>
-                    <strong id="chickenKebabPrice">$4.50</strong>
-                    <span>Available: <span id="chickenKebabQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="mainDish">
-                    <span>Beef Kebab Roll</span>
-                    <strong id="beefKebabPrice">$5.00</strong>
-                    <span>Available: <span id="beefKebabQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="mainDish">
-                    <span>Mixed Kebab Roll</span>
-                    <strong id="mixedKebabPrice">$5.50</strong>
-                    <span>Available: <span id="mixedKebabQuantity">0</span></span>
-                </label>
-            </div>
+<div class="order-card">
+    <h3>Main Dish (Choose 1)</h3>
+    <label class="order-option">
+        <input type="radio" name="mainDish" checked value="Chicken Kebab Roll">
+        <span>Chicken Kebab Roll</span>
+        <strong id="chickenKebabPrice">$4.50</strong>
+        <span>Available: <span id="chickenKebabQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="mainDish" value="Beef Kebab Roll">
+        <span>Beef Kebab Roll</span>
+        <strong id="beefKebabPrice">$5.00</strong>
+        <span>Available: <span id="beefKebabQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="mainDish" value="Mixed Kebab Roll">
+        <span>Mixed Kebab Roll</span>
+        <strong id="mixedKebabPrice">$5.50</strong>
+        <span>Available: <span id="mixedKebabQuantity">0</span></span>
+    </label>
+</div>
 
-            <!-- WRAP TYPE -->
-            <div class="order-card highlight-card">
-                <h3>Wrap Type (Choose 1)</h3>
-                <label class="order-option">
-                    <input type="radio" name="wrapType" checked>
-                    <span>Regular Wrap</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="regularWrapQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="wrapType">
-                    <span>Wholemeal Wrap</span>
-                    <strong id="wholemealWrapPrice">$0.30</strong>
-                    <span>Available: <span id="wholemealWrapQuantity">0</span></span>
-                </label>
-            </div>
+<!-- WRAP TYPE -->
+<div class="order-card highlight-card">
+    <h3>Wrap Type (Choose 1)</h3>
+    <label class="order-option">
+        <input type="radio" name="wrapType" checked value="Regular Wrap">
+        <span>Regular Wrap</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="regularWrapQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="wrapType" value="Wholemeal Wrap">
+        <span>Wholemeal Wrap</span>
+        <strong id="wholemealWrapPrice">$0.30</strong>
+        <span>Available: <span id="wholemealWrapQuantity">0</span></span>
+    </label>
+</div>
 
-            <!-- CHOICE OF BASE -->
-            <div class="order-card">
-                <h3>Choice of Base (Choose 1)</h3>
-                <label class="order-option">
-                    <input type="radio" name="baseType" checked>
-                    <span>Standard Base (Vegetables)</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="standardBaseQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="baseType">
-                    <span>No Base (Meat only)</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="noBaseQuantity">0</span></span>
-                </label>
-            </div>
+<!-- CHOICE OF BASE -->
+<div class="order-card">
+    <h3>Choice of Base (Choose 1)</h3>
+    <label class="order-option">
+        <input type="radio" name="baseType" checked value="Standard Base (Vegetables)">
+        <span>Standard Base (Vegetables)</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="standardBaseQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="baseType" value="No Base (Meat only)">
+        <span>No Base (Meat only)</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="noBaseQuantity">0</span></span>
+    </label>
+</div>
 
-            <!-- ADD ONS -->
-            <div class="order-card highlight-card">
-                <h3>Add-ons (Optional)</h3>
-                <div class="addon-row">
-                    <span>Add Cheese (<span id="cheesePrice">$0.50</span>)</span>
-                    <input type="number" min="0" value="0">
-                    <span>Available: <span id="cheeseQuantity">0</span></span>
-                </div>
-                <div class="addon-row">
-                    <span>Add Egg (<span id="eggPrice">$0.60</span>)</span>
-                    <input type="number" min="0" value="0">
-                    <span>Available: <span id="eggQuantity">0</span></span>
-                </div>
-                <div class="addon-row">
-                    <span>Extra Meat (<span id="extraMeatPrice">$2.00</span>)</span>
-                    <input type="number" min="0" value="0">
-                    <span>Available: <span id="extraMeatQuantity">0</span></span>
-                </div>
-            </div>
+<!-- ADD ONS -->
+<div class="order-card highlight-card">
+    <h3>Add-ons (Optional)</h3>
+    <div class="addon-row">
+        <span>Add Cheese (<span id="cheesePrice">$0.50</span>)</span>
+        <input type="number" min="0" value="0" id="cheeseInput">
+        <span>Available: <span id="cheeseQuantity">0</span></span>
+    </div>
+    <div class="addon-row">
+        <span>Add Egg (<span id="eggPrice">$0.60</span>)</span>
+        <input type="number" min="0" value="0" id="eggInput">
+        <span>Available: <span id="eggQuantity">0</span></span>
+    </div>
+    <div class="addon-row">
+        <span>Extra Meat (<span id="extraMeatPrice">$2.00</span>)</span>
+        <input type="number" min="0" value="0" id="extraMeatInput">
+        <span>Available: <span id="extraMeatQuantity">0</span></span>
+    </div>
+</div>
 
-            <!-- CHOICE OF SAUCES -->
-            <div class="order-card">
-                <h3>Choice of Sauces (Choose 1)</h3>
-                <label class="order-option">
-                    <input type="radio" name="sauces">
-                    <span>Mayo (Creamy)</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="mayoQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="sauces">
-                    <span>Chili Sauce (Sweet/Spicy)</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="chiliSauceQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="sauces">
-                    <span>Garlic Sauce (White Mediterranean)</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="garlicSauceQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="sauces">
-                    <span>BBQ Sauce</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="bbqSauceQuantity">0</span></span>
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="sauces">
-                    <span>Tomato Sauce</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="tomatoSauceQuantity">0</span></span>
-                </label>
-            </div>
+<!-- CHOICE OF SAUCES -->
+<div class="order-card">
+    <h3>Choice of Sauces (Choose 1)</h3>
+    <label class="order-option">
+        <input type="radio" name="sauces" value="Mayo (Creamy)">
+        <span>Mayo (Creamy)</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="mayoQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="sauces" value="Chili Sauce (Sweet/Spicy)">
+        <span>Chili Sauce (Sweet/Spicy)</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="chiliSauceQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="sauces" value="Garlic Sauce (White Mediterranean)">
+        <span>Garlic Sauce (White Mediterranean)</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="garlicSauceQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="sauces" value="BBQ Sauce">
+        <span>BBQ Sauce</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="bbqSauceQuantity">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="sauces" value="Tomato Sauce">
+        <span>Tomato Sauce</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="tomatoSauceQuantity">0</span></span>
+    </label>
+</div>
 
             <!-- CONFIRM -->
-            <button class="primary-btn confirm-btn">
+            <button class="primary-btn confirm-btn" id="confirmBtn">
                 Confirm Order
             </button>
+
+            <!-- SUCCESS MODAL -->
+            <div class="modal-overlay" id="successModal" style="display:none;">
+                <div class="modal-card success-card">
+                    <h3>Order Successful</h3>
+                    <p>Your order has been confirmed!</p>
+                    <button class="primary-btn" id="backToHomeBtn">Back</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

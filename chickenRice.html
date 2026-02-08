@@ -24,57 +24,66 @@
         <div class="container order-page">
 
             <!-- MAIN DISH -->
-            <div class="order-card">
-                <h3>Main Dish (Choose 1)</h3>
-                <label class="order-option">
-                    <input type="radio" name="mainDish" checked>
-                    <span>Chicken Rice</span>
-                    <strong id="chickenRicePrice">$3.00</strong> <!-- Dynamic -->
-                    <span>Available: <span id="chickenRiceQuantity">0</span></span> <!-- Dynamic -->
-                </label>
-            </div>
+<div class="order-card">
+    <h3>Main Dish (Choose 1)</h3>
+    <label class="order-option">
+        <input type="radio" name="mainDish" checked id="mainDishRadio">
+        <span>Chicken Rice</span>
+        <strong id="chickenRicePrice">$3.00</strong>
+        <span>Available: <span id="chickenRiceQuantity">0</span></span>
+    </label>
+</div>
 
-            <!-- CHICKEN TYPE -->
-            <div class="order-card highlight-card">
-                <h3>Chicken Type (Choose 1)</h3>
-                <label class="order-option">
-                    <input type="radio" name="chickenType" checked>
-                    <span>Roasted</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="roastedPortions">0</span></span> <!-- Dynamic -->
-                </label>
-                <label class="order-option">
-                    <input type="radio" name="chickenType">
-                    <span>Steamed</span>
-                    <strong>$0.00</strong>
-                    <span>Available: <span id="steamedPortions">0</span></span> <!-- Dynamic -->
-                </label>
-            </div>
+<!-- CHICKEN TYPE -->
+<div class="order-card highlight-card">
+    <h3>Chicken Type (Choose 1)</h3>
+    <label class="order-option">
+        <input type="radio" name="chickenType" checked id="roastedRadio" value="roasted">
+        <span>Roasted</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="roastedPortions">0</span></span>
+    </label>
+    <label class="order-option">
+        <input type="radio" name="chickenType" id="steamedRadio" value="steamed">
+        <span>Steamed</span>
+        <strong>$0.00</strong>
+        <span>Available: <span id="steamedPortions">0</span></span>
+    </label>
+</div>
 
-            <!-- ADD ONS -->
-            <div class="order-card">
-                <h3>Add-ons (Optional)</h3>
-                <div class="addon-row">
-                    <span>Extra Rice (<span id="extraRicePrice">$0.60</span>)</span> <!-- Dynamic -->
-                    <input type="number" min="0" value="0">
-                    <span>Available: <span id="extraRiceQuantity">0</span></span> <!-- Dynamic -->
-                </div>
-                <div class="addon-row">
-                    <span>Braised Egg (<span id="braisedEggPrice">$0.60</span>)</span> <!-- Dynamic -->
-                    <input type="number" min="0" value="0">
-                    <span>Available: <span id="braisedEggQuantity">0</span></span> <!-- Dynamic -->
-                </div>
-                <div class="addon-row">
-                    <span>Extra Chicken (<span id="extraChickenPrice">$1.60</span>)</span> <!-- Dynamic -->
-                    <input type="number" min="0" value="0">
-                    <span>Available: <span id="extraChickenQuantity">0</span></span> <!-- Dynamic -->
-                </div>
-            </div>
+<!-- ADD ONS -->
+<div class="order-card">
+    <h3>Add-ons (Optional)</h3>
+    <div class="addon-row">
+        <span>Extra Rice (<span id="extraRicePrice">$0.60</span>)</span>
+        <input type="number" min="0" value="0" id="extraRiceInput">
+        <span>Available: <span id="extraRiceQuantity">0</span></span>
+    </div>
+    <div class="addon-row">
+        <span>Braised Egg (<span id="braisedEggPrice">$0.60</span>)</span>
+        <input type="number" min="0" value="0" id="braisedEggInput">
+        <span>Available: <span id="braisedEggQuantity">0</span></span>
+    </div>
+    <div class="addon-row">
+        <span>Extra Chicken (<span id="extraChickenPrice">$1.60</span>)</span>
+        <input type="number" min="0" value="0" id="extraChickenInput">
+        <span>Available: <span id="extraChickenQuantity">0</span></span>
+    </div>
+</div>
 
-            <!-- CONFIRM -->
-            <button class="primary-btn confirm-btn">
-                Confirm Order
-            </button>
+<!-- CONFIRM -->
+<button class="primary-btn confirm-btn" id="confirmBtn">
+    Confirm Order
+</button>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal" style="display:none;">
+    <div class="modal-card success-card">
+        <h3>Order Success</h3>
+        <p>Your order has been confirmed!</p>
+        <button class="primary-btn" id="backToHomeBtn">Back</button>
+    </div>
+</div>
         </div>
     </div>
 </div>
