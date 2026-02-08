@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SP FoodPulse Competition</title>
+    <meta name="viewport" content="width=810, height=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- For icons -->
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="app-shell">
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <h2 class="page-title"><i class="fas fa-trophy"></i> Competitions</h2>
+            </div>
+
+            <!-- COMPETITION CONTENT -->
+            <div class="container">
+                <h3 class="competition-title"><i class="fas fa-recycle"></i> Food Vendor Reduce Waste Competition</h3>
+                <div class="countdown-container">
+                    <p class="countdown-text">Event ends in:</p>
+                    <div class="countdown-timer" id="countdown">Calculating...</div>
+                </div>
+
+                <!-- Rewards Container -->
+                <div class="rewards-container">
+                    <h4>Your Potential Rewards</h4>
+                    <p id="rewards-text">Log in to see your rewards based on your position!</p>
+                </div>
+
+                <div class="table-container">
+                    <table id="competitionTable" class="competition-table">
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-hashtag"></i> Position</th>
+                                <th><i class="fas fa-user"></i> Vendor Username</th>
+                                <th><i class="fas fa-trash-alt"></i> Reduced Waste</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Items Container (2 columns) -->
+                <div class="items-container">
+                    <div class="item-card">
+                        <h5>Certificate</h5>
+                        <i class="fas fa-certificate item-icon certificate"></i>
+                        <p>Awarded for top positions in the competition.</p>
+                    </div>
+                    <div class="item-card">
+                        <h5>Badge</h5>
+                        <i class="fas fa-medal item-icon badge"></i>
+                        <p>Exclusive badge for your achievement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="static/competition.js"></script>
+</body>
+</html>

@@ -403,6 +403,10 @@ function loadVendorProfile() {
             document.getElementById("dailyQuizBtn").style.display = "block";
         }
 
+        if (token) {
+            document.getElementById("redeemRewardsBtn").style.display = "block";
+        }
+
         if (rankName) rankName.textContent = currentRank;
 
         loadQuests('daily'); // Load daily quests

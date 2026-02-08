@@ -1198,6 +1198,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const competitionBtn = document.getElementById("competitionBtn");
+    if (competitionBtn) {
+        competitionBtn.addEventListener("click", () => {
+            window.location.href = "competition.html";
+        });
+    }
+
+    const rewardBtn = document.getElementById("redeemRewardsBtn");
+    if (rewardBtn) {
+        rewardBtn.addEventListener("click", () => {
+            window.location.href = "reward.html";
+        });
+    }
+
     /* ==================
     SIDE MENU LOGIC
     ====================*/
